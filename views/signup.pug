@@ -1,0 +1,84 @@
+extends layout
+
+block content
+  block content
+    .signup-form.container-fluid
+      form#form.needs-validation(action='/signup', method='post', novalidate='')
+        h2.border-bottom.border-primary.text-center
+          | QCFIRST REGISTRATION
+        .form-group
+          .row
+            .col-sm-12
+              p.text-md-center.hint-text
+                | Create Your QCFirst Account with your QC Email.
+            .form-group.col-sm-12.col-md-12.col-lg-12
+              label.form-label(for='validationCustom01') First Name
+              input#validationCustom01.form-control(type='text', name='firstname', placeholder='Enter Your First Name', required='')
+              .valid-feedback  Looks Good!
+              .invalid-feedback  Needs to Be Filled
+              //
+                Failed
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error Message</small>
+            .form-group.col-sm-12.col-md-12.col-lg-12
+              label.form-label(for='validationCustom02') Last Name
+              input#validationCustom02.form-control(type='text', name='lastname', placeholder='Enter Your Last Name', required='')
+              .valid-feedback  Looks Good!
+              .invalid-feedback  Needs to Be Filled
+              //
+                Failed
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Error Message</small>
+          //- .form-group.col-sm-12.col-md-12.col-lg-12.text-md-center
+          //-   .btn-group(role='group')
+          //-     .form-group.col-sm-12.col-md-12.col-lg-12.text-md-center
+          //-       input#validationCustom03(type='radio', name='student', placeholder='student', required='', hidden='')
+          //-       label.btn.btn-primary(for='validationCustom03') Student
+          //-       input#validationCustom04(type='radio', name='instructor', placeholder='teacher', required='', hidden='')
+          //-       label.btn.btn-primary(for='validationCustom04') Teacher
+          //-       br
+          //-       .valid-feedback  Looks Good!
+          //-       .invalid-feedback  Needs to Be Filled
+                //
+                  F
+                  <i class="fas fa-check-circle"></i>
+                  <i class="fas fa-exclamation-circle"></i>
+                  <small>Error Message</small>
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            label.form-label(for='validationCustom05') QC Email
+            input#validationCustom05.form-control(type='email', name='email', placeholder='@qcfirst.edu', required='')
+            .valid-feedback  Looks Good!
+            .invalid-feedback  Needs to Be Filled
+            //
+              F
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+              <small>Error Message</small>
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            label.form-label(for='validationCustom06') Password
+            input#validationCustom06.form-control(type='password', name='password', placeholder='Password', required='')
+            .valid-feedback  Looks Good!
+            .invalid-feedback  Needs to Be Filled
+            //
+              F
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+              <small>Error Message</small>
+          .form-group.col-sm-12.col-md-12.col-lg-12
+            label.form-label(for='validationCustom07') Confirm Password
+            input#validationCustom07.form-control(type='password', placeholder='Confirm Password', required='')
+            .valid-feedback  Looks Good!
+            .invalid-feedback  Needs to Be Filled
+            //
+              F
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
+              <small>Error Message</small>
+        .form-group
+          button#form-submit.btn.btn-success.btn-lg.btn-block(type='submit', value='Register')
+            | Submit
+      .text-lg-center.sign-up-text
+        | Already have an account?
+        a(href='#local-sign-in') Sign in

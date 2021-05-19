@@ -1,0 +1,39 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+#delete-course-container {
+  margin-top: 10%;
+}
+
+#prof-delete-table {
+  margin-top: 3%;
+  border: 3px solid black;
+  background: oldlace
+    linear-gradient(
+      to bottom,
+      #fbe8a6,
+      #fbe8a6 3rem,
+      transparent 1rem,
+      transparent 100%
+    );
+}
+
+/*Disabling Functionality*/
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.8;
+}

@@ -1,0 +1,80 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+#create-course-container {
+  margin-top: 10%;
+}
+
+#course-form {
+  margin-top: 5%;
+  padding-top: 4%;
+}
+
+.weekDays-selector input {
+  display: none !important;
+}
+
+.weekDays-selector input[type="checkbox"] + label {
+  display: inline-block;
+  border-radius: 6px;
+  height: 40px;
+  width: 30px;
+  margin-right: 3px;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  background: white;
+  border: 2px solid black;
+}
+
+.weekDays-selector input[type="checkbox"]:checked + label {
+  background: #31708e;
+  color: #303c6c;
+}
+
+.text-center {
+  color: #54627b;
+}
+
+#sems-span {
+  padding-top: 2%;
+}
+
+#course-btn {
+  margin-top: 5%;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  border: 1px solid black;
+  border-color: #153983;
+  border-width: 3px;
+  background-color: #153983;
+  line-height: 1.5;
+  box-shadow: 10px 5px 0px #31708e;
+}
+
+/* Added a bit of a margin to help with the formatting */
+select {
+  margin-top: 10px;
+}
+
+/*Disabling Functionality*/
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.8;
+}

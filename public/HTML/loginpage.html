@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!-- Project code by: Jonathan Yulan and David Acuqui -->
+<!--
+  Name: David Acuqui and Jonathan Yulan 
+  Date: 04.17.2021
+  Section: CS 355-54
+
+  Login page for the QC First website.
+
+  Photos taken from https://unsplash.com/ (search keywords: college, professor, student)
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Log in page</title>
+    <link rel="stylesheet" type="text/css" href="../CSS/loginstyles.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- MAKE SURE TO REMOVE ANY SCRIPT TAGS BELOW NOT IN USE -->
+    <script src="../Javascript/jquery-3.0.0.min.js"></script>
+    <script src="../Javascript/bootstrap.min.js"></script>
+    <script src="../CSS/bootstrap.min.css"></script>
+  </head>
+
+  <body>
+    <div class="sidenav">
+      <div class="login-main-text">
+        <h2>QCFirst<br>Login Page</h2>
+        <p>Remember to Sign in With Your QC-email as your UserName!</p>
+      </div>
+    </div>
+      <div class="main">
+        <div class="col-md-6 col-sm-12">
+          <div class="login-form">
+            <!-- Changes to form: add the method, action to the form tag -->
+            <form method="post" action="/loginpage">
+              <div class="form-group">
+                <label class="text-primary" >User Name</label>
+                <!-- Added name=email so that the server.js file knows the name of the variables -->
+                <input type="text" name="email" class="form-control-lg" placeholder="@qmail.cuny.edu">
+              </div>
+              <div class="form-group">
+                <label class="text-primary" >Password</label>
+                <!-- Same as email, added one for password -->
+                <input type="password" name="password" class="form-control-lg" placeholder="XXXXXXX">
+              </div>
+                <button type="submit" class="btn btn-black">Login</button>
+                <button class="btn btn-outline-info"><a href="../HTML/signup.html">Register</a></button>
+            </form>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
+

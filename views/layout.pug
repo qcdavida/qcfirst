@@ -1,0 +1,83 @@
+- const userName = user?.firstname;
+
+doctype html
+// Project code by: David Acuqui
+//
+  Name: David Acuqui
+  Date: 04.22.2021
+  Section: CS 355-54
+  *ADD CONTENT*
+  Photos taken from https://unsplash.com/ (search keywords: college, professor, student)
+html(lang='en')
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    title Student homepage
+    block scripts
+      script(src='/Javascript/jquery-3.0.0.min.js')
+      script(src='/Javascript/bootstrap.min.js')
+    block styles
+      link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+      link(rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css')
+      link(rel='stylesheet' type='text/css' href='/CSS/navbarstyles.css')
+  body.body_class
+    if user
+      nav.navbar.navbar-expand-md.fixed-top.myNav(role='navigation')
+        .container-fluid
+          a.navbar-brand(href='index')
+            img.navlogo(src='/Images/QCFirstLogo.png' alt='qcfirstlogo')
+          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse')
+            span.navbar-toggler-icon
+              i.fa.fa-bars
+          #navbarCollapse.collapse.navbar-collapse
+            .navbar-nav.navLinks
+              a.nav-item.nav-link.active(href='index') Home
+              a.nav-item.nav-link(href='enrollment') Enrollment
+            form.form-inline.ml-auto.navSearchLink
+              input.form-control.mr-sm-2(type='text' placeholder='Search courses(Ex: 355)')
+              button.btn.btn-outline-light(type='submit') Search
+            .navbar-nav.ml-auto.navAcctLink
+                a.nav-item.nav-link(href='/logout') Logout
+    else
+      nav.navbar.navbar-expand-md.fixed-top.myNav(role='navigation')
+        .container-fluid
+          a.navbar-brand(href='index')
+            img.navlogo(src='/Images/QCFirstLogo.png' alt='qcfirstlogo')
+          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse')
+            span.navbar-toggler-icon
+              i.fa.fa-bars
+          #navbarCollapse.collapse.navbar-collapse
+            .navbar-nav.navLinks
+              a.nav-item.nav-link.active(href='index') Home
+              a.nav-item.nav-link.disabled(href='../HTML/enrollment.html') Enrollment
+            form.form-inline.ml-auto.navSearchLink
+              input.form-control.mr-sm-2(type='text' placeholder='Search courses..')
+              button.btn.btn-outline-light.disabled(type='submit') Search
+            .navbar-nav.ml-auto.navAcctLink
+                a.nav-item.nav-link(href='signup') Register
+                a.nav-item.nav-link(href='login') Login
+    // End of nav bar
+    block content
+
+//Working code below:
+//  body.body_class
+    nav.navbar.navbar-expand-md.fixed-top.myNav(role='navigation')
+      .container-fluid
+        a.navbar-brand(href='index')
+          img.navlogo(src='/Images/QCFirstLogo.png' alt='qcfirstlogo')
+        button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarCollapse')
+          span.navbar-toggler-icon
+            i.fa.fa-bars
+        #navbarCollapse.collapse.navbar-collapse
+          .navbar-nav.navLinks
+            a.nav-item.nav-link.active(href='index') Home
+            a.nav-item.nav-link.disabled(href='../HTML/enrollment.html') Enrollment
+          form.form-inline.ml-auto.navSearchLink
+            input.form-control.mr-sm-2(type='text' placeholder='Search courses..')
+            button.btn.btn-outline-light(type='submit') Search
+          .navbar-nav.ml-auto.navAcctLink
+            if(user)
+              a.nav-item.nav-link(href='/logout') Logout
+            else
+              a.nav-item.nav-link(href='signup') Register
+              a.nav-item.nav-link(href='login') Login

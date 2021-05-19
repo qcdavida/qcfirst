@@ -1,0 +1,68 @@
+extends instructorlayout
+
+block append scripts
+  script(src='/Javascript/instructorCourse.js')
+
+block append styles
+  link(rel='stylesheet', type='text/css', href='/CSS/deletecoursestyles.css')
+
+block content
+ #delete-course-container.container-fluid
+  .table-responsive
+   table#prof-delete-table.table.table-hover
+    thead
+    caption My courses
+    |                   
+    tbody
+     tr
+      th Class ID
+      |                      
+      th Course Section
+      |              
+      th Course Name      
+      |  
+      th Semester
+      |                      
+      th Days
+      |                      
+      th Class Time
+      |                   
+      th Num. of Students
+      |                      
+      th Delete Course
+    tbody
+     each course in Courses
+      tr
+       td.courseidinfo= course.get("courseid")
+       |                      
+       td.coursesecinfo= course.get("courseSection")
+       |                      
+       td.coursenameinfo= course.get("coursename")
+       |                      
+       td
+       |                      
+       td
+       |                      
+       td
+       |             
+       td
+       |                      
+       td
+        button.deletemycoursebtn.btn.btn-danger(type='button') Delete
+      // footer goes here
+  hr
+  |          
+  footer
+   .row
+    .col-md-6
+     p Copyright &copy; 2021 QC First
+     |                
+    .col-md-6.text-md-right
+     a.text-dark(href='#') Terms of Use
+     |  
+     |                   
+     span.text-muted.mx-2 |
+     |  
+     |                   
+     a.text-dark(href='#') Privacy Policy
+    // End of container-fluid main content div

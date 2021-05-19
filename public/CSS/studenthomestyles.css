@@ -1,0 +1,49 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+#carousel-container {
+  padding-top: 7%;
+}
+
+.overlay {
+  color: #fff;
+  position: absolute;
+  z-index: 12;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+#stud-schedule-table {
+  margin-top: 3%;
+  border: 3px solid black;
+  background: oldlace
+    linear-gradient(
+      to bottom,
+      #fbe8a6,
+      #fbe8a6 3rem,
+      transparent 1rem,
+      transparent 100%
+    );
+}
+
+/*Disabling Functionality*/ 
+.disabled {
+  pointer-events:none;
+  cursor:default;
+  opacity:0.8;
+}

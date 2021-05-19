@@ -1,0 +1,71 @@
+extends instructorlayout 
+
+block append scripts
+  script(src='/Javascript/instructorCourse.js')
+
+block append styles
+    link(rel='stylesheet', type='text/css', href='/CSS/managecoursesstyles.css')
+
+block content
+ #manage-course-container.container-fluid
+  .table-responsive
+   table#profrostertable.table.table-hover
+    thead
+     caption #{ userName }'s current courses
+     |                   
+     tr
+      th Course Number
+      |                      
+      th Course Section
+      |    
+      th Course Name
+      |                      
+      th Semester
+      |                      
+      th Days
+      |                      
+      th Class Time
+      |                
+      th Room
+      |                      
+      th Num. of Students
+      |                      
+      th Roster
+    tbody
+     each course in Courses
+      tr.rowid= course.get("courseSection")
+       td.courseidinfo= course.get("courseid")
+       |                      
+       td.coursesecinfo= course.get("courseSection")
+       |                      
+       td.coursenameinfo= course.get("coursename")
+       |                      
+       td 
+       |
+       td 
+       |                      
+       td 
+       |                   
+       td.courseroominfo= course.get("room")
+       |                      
+       td 25/32
+       |                      
+       td
+        button.viewrostertbtn.btn.btn-info(type='submit') View
+      // footer goes here
+  hr
+  |          
+  footer
+   .row
+    .col-md-6
+     p Copyright &copy; 2021 QC First
+     |                
+    .col-md-6.text-md-right
+     a.text-dark(href='#') Terms of Use
+     |  
+     |                   
+     span.text-muted.mx-2 |
+     |  
+     |                   
+     a.text-dark(href='#') Privacy Policy
+    // End of container-fluid main content div

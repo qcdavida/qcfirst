@@ -1,0 +1,66 @@
+extends layout
+
+block append scripts
+  script(src='/Javascript/searchCourse.js')
+  
+block append styles
+  link(rel='stylesheet', type='text/css', href='../CSS/dropcoursestyles.css')
+
+block content
+    .container-fluid
+      .table-responsive
+        if course 
+        table#dropclasstable.table.table-hover
+          thead
+          caption #{ userName }'s current schedule
+          |                   
+          tbody
+            tr
+              th Course Name
+              |   
+              th Course Section
+              |
+              th Course Name
+              |                        
+              th Days
+              |                      
+              th Time
+              |                      
+              th Room
+              |                      
+              th Drop Course
+              |
+          tbody
+            each course in Courses
+              tr
+                td.courseidinfo= course.get("courseid")
+                |  
+                td.coursesecinfo= course.get("courseSection")
+                |                      
+                td.coursenameinfo= course.get("coursename")
+                |                      
+                td 
+                |                      
+                td
+                |
+                td.courseroominfo= course.get("room")
+                |                  
+                td
+                  button.deletebtn.btn.btn-danger(type='submit') Drop
+        // footer goes here
+      hr
+      |          
+      footer
+        .row
+          .col-md-6
+            p Copyright &copy; 2021 QC First
+          |                
+          .col-md-6.text-md-right
+            a.text-dark(href='#') Terms of Use
+            |  
+            |                   
+            span.text-muted.mx-2 |
+            |  
+            |                   
+            a.text-dark(href='#') Privacy Policy
+    // End of container-fluid main content div

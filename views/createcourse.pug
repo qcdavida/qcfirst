@@ -1,0 +1,107 @@
+extends instructorlayout 
+
+block append styles
+    link(rel='stylesheet' type='text/css' href='/CSS/createcoursestyles.css')
+
+block content
+ #create-course-container.container-fluid
+  .row
+   .col-md-6
+    #create-course-form.card
+     h5.card-header.info-color.white-text.text-center.py-4
+      strong Fill out the form to create a new course
+      |                   
+     .card-body.px-lg-5.pt-0
+      form.text-center(action='/createcourse' method='post')
+       #course-id-form.md-form
+        label(for='course-id-form') Course ID:
+        |                            
+        input#course-id-form.form-control(type='text' name='courseidform')
+        |                         
+       .md-form
+        label(for='course-name-form') Course Section:
+        |                            
+        input#course-name-form.form-control(type='text' name='courseSection')
+        |                         
+       span#sems-span Semester:
+       |                         
+       select.mdb-select(name='termSelection')
+        option(value="" disabled) Choose term
+        option(value='Fall 2021', name='nextTermOption') Fall 2021
+        |                            
+        option(value='Summer 2021', name='currentTermOption') Summer 2021
+        |                         
+       .md-form
+        span#sems-span Department:
+        |    
+        select.mdb-select(name='courseDept')
+         option(value="" disabled) Choose Department
+         option(value='Computer Science', name='csDept') Computer Science
+         |                            
+         option(value='Math', name='mathDept') Math
+         |                            
+         option(value='English', name='englishDept') English 
+         |                            
+         option(value='Arts', name='artsDept') Arts                   
+       .md-form
+        label(for='class-size-form') Class capacity:
+        |                            
+        input#class-size-form.form-control(type='text' name='courseCapacity')
+       span#day-selection Days: 
+       select.mdb-select(name='daySelection')
+        option(value="" disabled) Choose Day
+        |
+        option(value='Monday', name='monday') Monday
+        |                            
+        option(value='Tuesday', name='tuesday') Tuesday
+        |                            
+        option(value='Wednesday', name='wednesday') Wednesday 
+        |                            
+        option(value='Thursday', name='thursday') Thursday
+        |    
+        option(value='Friday', name='friday') Friday
+        |            
+       span#time-selection Time:
+       |                         
+       select.mdb-select(name='timeSelection')
+        option(value='', disabled='') Choose time
+        |                            
+        option(value='9:00am-10:15am', selected='' name='9timeslot') 9:00am-10:15am
+        |                            
+        option(value='10:30am-11:45am' name='10timeslot') 10:30am-11:45am
+        |                            
+        option(value='12:00pm-1:15pm' name='12timeslot') 12:00pm-1:15pm
+        |                            
+        option(value='1:30pm-2:45pm' name='1timeslot') 1:30pm-2:45pm
+        |                            
+        option(value='3:00pm-4:15pm' name='3timeslot') 3:00pm-4:15pm
+        |                            
+        option(value='4:30pm-5:45pm' name='4timeslot') 4:30pm-5:45pm
+        |                            
+        option(value='6:00pm-7:15pm' name='6timeslot') 6:00pm-7:15pm
+        |                            
+        option(value='7:30pm-8:45pm' name='7timeslot') 7:30pm-8:45pm
+        |                         
+       button#course-btn.btn.btn-outline-info.btn-rounded.btn-block.my-4.waves-effect.z-depth-0(type='submit') Create course
+        |                         
+    // end of form div
+   .col-md-6
+    .img-container
+    img(src='/Images/professor4.jpg', alt='classroom', width='100%')
+    // footer goes here
+  hr
+  |          
+  footer
+   .row
+    .col-md-6
+     p Copyright &copy; 2021 QC First
+     |                
+    .col-md-6.text-md-right
+     a.text-dark(href='#') Terms of Use
+     |  
+     |                   
+     span.text-muted.mx-2 |
+     |  
+     |                   
+     a.text-dark(href='#') Privacy Policy
+    // End of container-fluid main content div

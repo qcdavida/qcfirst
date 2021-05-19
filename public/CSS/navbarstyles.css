@@ -1,0 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+.myNav {
+  background-color: #800000;
+}
+
+.navLinks a,
+.navAcctLink a {
+  color: #ecd5bb;
+  font-size: 15px;
+}
+
+.navLinks a:hover,
+.navAcctLink a:hover {
+  color: #54627b;
+}
+
+.navlogo {
+  height: 50px;
+}
+
+/*Disabling Functionality*/ 
+.disabled {
+  pointer-events:none;
+  cursor:default;
+  opacity:0.8;
+}

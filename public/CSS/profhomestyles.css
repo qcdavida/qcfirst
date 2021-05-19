@@ -1,0 +1,76 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+.profattentionjumbo {
+  margin-top: 6%;
+}
+
+.card-text {
+  font-family: "Lato", sans-serif;
+}
+
+#main-info {
+  margin-top: 10%;
+  margin-bottom: 3%;
+  padding-bottom: 3%;
+}
+
+#prof-main-div {
+  margin-top: 10%;
+}
+
+.card-info {
+  margin-top: 1%;
+}
+
+.card-img {
+  width: 300px;
+}
+
+#create-btn {
+  margin-top: 5%;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  border: 1px solid black;
+  border-color: #153983;
+  border-width: 3px;
+  background-color: #153983;
+  line-height: 1.5;
+  box-shadow: 10px 5px 0px #31708e;
+}
+
+#delete-btn {
+  margin-top: 5%;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  border: 1px solid black;
+  border-color: #b22222;
+  border-width: 3px;
+  background-color: #b22222;
+  line-height: 1.5;
+  box-shadow: 10px 5px 0px #8b0000;
+}
+
+/*Disabling Functionality*/ 
+.disabled {
+  pointer-events:none;
+  cursor:default;
+  opacity:0.8;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<!-- Project code by: Jonathan Yulan and David Acuqui -->
+<!--
+  Name: David Acuqui and Jonathan Yulan 
+  Date: 04.22.2021
+  Section: CS 355-54
+
+  *ADD CONTENT*
+
+  Photos taken from https://unsplash.com/ (search keywords: college, professor, student)
+-->
+
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Create course - professor</title>
+
+      <script src="../Javascript/jquery-3.0.0.min.js"></script>
+      <script src="../Javascript/bootstrap.min.js"></script>
+      <!-- <script src="../CSS/bootstrap.min.css"></script> -->
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" href="../CSS/navbarstyles.css">
+      <link rel="stylesheet" type="text/css" href="../CSS/createcoursestyles.css">
+   </head>
+   
+   <body>
+      <nav role="navigation" class="navbar navbar-expand-md fixed-top myNav">
+         <div class="container-fluid">
+            <a href="../HTML/instructorhomepage.html" class="navbar-brand">
+               <img src="../Images/QCFirstLogo.png" class="navlogo" alt="qcfirstlogo">
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+               <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+               <div class="navbar-nav navLinks">
+                  <a href="../HTML/instructorhomepage.html" class="nav-item nav-link active disabled">Home</a>
+                  <a href="../HTML/managecourse.html" class="nav-item nav-link disabled">Manage Courses</a>
+               </div>
+               <form class="form-inline ml-auto navSearchLink">
+                  <input type="text" class="form-control mr-sm-2 disabled" placeholder="Search courses..">
+                  <button type="submit" class="btn btn-outline-light disabled">Search</button>
+               </form>
+               <div class="navbar-nav ml-auto navAcctLink">
+                  <a href="../HTML/loginpage.html" class="nav-item nav-link">Logout</a>
+               </div>
+            </div>
+         </div>
+      </nav><!-- End of nav bar -->
+
+      <div class="container-fluid" id="create-course-container">
+         <div class="row">
+            <div class="col-md-6">
+               <div class="card" id="create-course-form">
+                  <h5 class="card-header info-color white-text text-center py-4">
+                      <strong>Fill out the form to create a new course</strong>
+                  </h5>
+                  <div class="card-body px-lg-5 pt-0">
+                     <form class="text-center" action="#!">
+                        <div class="md-form" id="course-id-form">
+                           <label for="course-id-form">Course ID:</label>
+                           <input type="text" id="course-id-form" class="form-control disabled">
+                        </div>
+                        <div class="md-form">
+                           <label for="course-name-form">Course Name:</label>
+                           <input type="text" id="course-name-form" class="form-control disabled">
+                        </div>
+                        <span id="sems-span">Semester:</span>
+                        <select class="mdb-select disabled">
+                           <option value="" disabled>Choose term</option>
+                           <option value="1" selected>Fall</option>
+                           <option value="2">Spring</option>
+                           <option value="3">Summer</option>
+                        </select>
+                        <div class="md-form">
+                           <label for="dept-form">Department:</label>
+                           <input type="text" id="dept-form" class="form-control disabled">
+                        </div>
+                        <div class="md-form">
+                           <label for="class-size-form">Class capacity:</label>
+                           <input type="text" id="class-size-form" class="form-control disabled">
+                        </div>
+
+                        <!-- The code/css for the following class, weekDays selector, was taken from
+                           here: https://codepen.io/steelwater/pen/BjeZQx -->
+                        <div class="weekDays-selector disabled">
+                           <p>Select days:</p>
+                           <input type="checkbox" id="weekday-mon" class="weekday" />
+                           <label for="weekday-mon">M</label>
+                           <input type="checkbox" id="weekday-tue" class="weekday" />
+                           <label for="weekday-tue">T</label>
+                           <input type="checkbox" id="weekday-wed" class="weekday" />
+                           <label for="weekday-wed">W</label>
+                           <input type="checkbox" id="weekday-thu" class="weekday" />
+                           <label for="weekday-thu">T</label>
+                           <input type="checkbox" id="weekday-fri" class="weekday" />
+                           <label for="weekday-fri">F</label>
+                           <input type="checkbox" id="weekday-sat" class="weekday" />
+                           <label for="weekday-sat">S</label>
+                           <input type="checkbox" id="weekday-sun" class="weekday" />
+                           <label for="weekday-sun">S</label>
+                        </div>
+
+                        <span id="time-selection">Time:</span>
+                        <select class="mdb-select disabled">
+                           <option value="" disabled>Choose time</option>
+                           <option value="1" selected>9:00am-10:15am</option>
+                           <option value="2">10:30am-11:45am</option>
+                           <option value="3">12:00pm-1:15pm</option>
+                           <option value="4">1:30pm-2:45pm</option>
+                           <option value="5">3:00pm-4:15pm</option>
+                           <option value="3">4:30pm-5:45pm</option>
+                           <option value="3">6:00pm-7:15pm</option>
+                           <option value="3">7:30pm-8:45pm</option>
+                           <option value="3">9:00pm-10:15pm</option>
+                        </select>
+
+                        <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0 disabled" id="course-btn" type="submit">Create course</button>
+                        <hr>
+                     </form>
+                  </div>
+               </div>
+            </div><!-- end of form div -->
+            <div class="col-md-6">
+               <div class="img-container">
+                  <img src="../Images/professor4.jpg" alt="classroom" width="100%"/>
+               </div>
+            </div><!-- end of image div -->
+         </div>
+         <!-- footer goes here -->
+         <hr>
+         <footer>
+            <div class="row">
+               <div class="col-md-6">
+                  <p>Copyright &copy; 2021 QC First</p>
+               </div>
+               <div class="col-md-6 text-md-right">
+                  <a href="#" class="text-dark">Terms of Use</a> 
+                  <span class="text-muted mx-2">|</span> 
+                  <a href="#" class="text-dark">Privacy Policy</a>
+               </div>
+            </div>
+         </footer>
+      </div> <!-- End of container-fluid main content div -->
+   </body>
+</html>

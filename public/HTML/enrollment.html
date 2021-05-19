@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!-- Project code by: Jonathan Yulan and David Acuqui -->
+<!--
+  Name: David Acuqui and Jonathan Yulan 
+  Date: 04.22.2021
+  Section: CS 355-54
+  *ADD CONTENT*
+  Photos taken from https://unsplash.com/ (search keywords: college, professor, student)
+-->
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Enrollment - student</title>
+
+        <script src="../Javascript/jquery-3.0.0.min.js"></script>
+        <script src="../Javascript/bootstrap.min.js"></script>
+        <!-- <script src="../CSS/bootstrap.min.css"></script> -->
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="../CSS/navbarstyles.css">
+        <link rel="stylesheet" type="text/css" href="../CSS/enrollmentstyles.css">
+    </head>
+   
+    <body>
+        <nav role="navigation" class="navbar navbar-expand-md fixed-top myNav">
+            <div class="container-fluid">
+                <a href="../HTML/index.html" class="navbar-brand">
+                    <img src="../Images/QCFirstLogo.png" class="navlogo" alt="qcfirstlogo">
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"><i class="fa fa-bars"></i></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav navLinks">
+                        <a href="../HTML/index.html" class="nav-item nav-link active disabled">Home</a>
+                        <a href="../HTML/enrollment.html" class="nav-item nav-link disabled">Enrollment</a>
+                    </div>
+                    <form class="form-inline ml-auto navSearchLink">
+                        <input type="text" class="form-control mr-sm-2 disabled" placeholder="Search courses..">
+                        <button type="submit" class="btn btn-outline-light disabled">Search</button>
+                    </form>
+                    <div class="navbar-nav ml-auto navAcctLink">
+                        <a href="../HTML/loginpage.html" class="nav-item nav-link">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </nav><!-- End of nav bar -->
+      
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6" id="left-panel-info">
+                    <img src="../Images/student1.jpg" alt="student" style="width: 100%"/>
+                    <a href="../HTML/addcourse.html"><button type="button" class="btn btn-primary disabled" id="reg-btn">Register course</button></a>
+                </div>
+                <div class="col-md-6" id="right-panel-info">
+                    <img src="../Images/college3.jpg" alt="collegeroom" style="width:100%"/>
+                    <a href="../HTML/dropcourse.html"><button type="button" class="btn btn-primary disabled" id="drop-btn">Drop course</button></a>
+                </div>
+            </div>
+            <!-- footer goes here -->
+            <hr>
+            <footer>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Copyright &copy; 2021 QC First</p>
+                </div>
+                <div class="col-md-6 text-md-right">
+                    <a href="#" class="text-dark">Terms of Use</a> 
+                    <span class="text-muted mx-2">|</span> 
+                    <a href="#" class="text-dark">Privacy Policy</a>
+                </div>
+            </div>
+            </footer>
+        </div> <!-- End of container-fluid main content div -->
+    </body>
+</html>

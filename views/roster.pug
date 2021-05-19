@@ -1,0 +1,10 @@
+//- extends instructorlayout 
+
+block append styles
+    link(rel='stylesheet', type='text/css', href='/CSS/managecoursesstyles.css')
+
+block content
+ p Hello 
+ |
+ each student in Roster 
+    p= student.get("firstname")

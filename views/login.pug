@@ -1,0 +1,39 @@
+doctype html
+// Project code by: Jonathan Yulan and David Acuqui
+//
+  Name: David Acuqui and Jonathan Yulan
+  Date: 04.17.2021
+  Section: CS 355-54
+  Login page for the QC First website.
+  Photos taken from https://unsplash.com/ (search keywords: college, professor, student)
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  title Log in page
+  link(rel='stylesheet', type='text/css', href='/CSS/loginstyles.css')
+  link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', rel='stylesheet')
+  script(src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js')
+  script(src='//code.jquery.com/jquery-1.11.1.min.js')
+  script(src='/Javascript/jquery-3.0.0.min.js')
+  script(src='/Javascript/bootstrap.min.js')
+  script(src='/CSS/bootstrap.min.css')
+.sidenav
+  .login-main-text
+    h2
+      | QCFirst
+      br
+      | Login Page
+    p Remember to Sign in With Your QCFirst email as your UserName!
+.main
+  .col-md-6.col-sm-12
+    .login-form
+      form(method='post', action='/login')
+        .form-group
+          label.text-primary User Name
+          input.form-control-lg(type='text', name='email', placeholder='@qcfirst.edu')
+        .form-group
+          label.text-primary Password
+          input.form-control-lg(type='password', name='password', placeholder='XXXXXXX')
+        button.btn.btn-black(type='submit') Login
+        button.btn.btn-outline-info
+          a(href='/signup') Register

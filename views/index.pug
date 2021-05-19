@@ -1,0 +1,64 @@
+extends layout
+
+block append styles
+    link(rel='stylesheet' type='text/css' href='/CSS/studenthomestyles.css')
+    
+block content
+    #carousel-container.container-lg.my-3
+        #carousel-info.carousel.slide(data-interval='3000' data-ride='carousel')
+            ol.carousel-indicators
+                li.active(data-target='#myCarousel' data-slide-to='0')
+                li(data-target='#myCarousel' data-slide-to='1')
+                li(data-target='#myCarousel' data-slide-to='2')
+            .carousel-inner
+                .carousel-item.active
+                    img(src='/Images/college1.jpg' alt='slide-1')
+                    .container
+                        #slide-info1.carousel-caption
+                            h1 Don&apos;t have an account?
+                            p Signup is fast and easy!
+                            p
+                            a.btn.btn-lg.btn-primary(href='signup' role='button') Sign up
+                .carousel-item
+                    img(src='/Images/college4.jpg' alt='slide-2')
+                    .container
+                        #slide-info2.carousel-caption
+                            h1 Register for Fall classes!
+                            p Enrollment starts 4/26
+                            p
+                            a.btn.btn-lg.btn-primary.disabled(href='addcourse' role='button') Register today
+                .carousel-item
+                    img(src='/Images/college5.jpg' alt='slide-3')
+                    .container
+                        #slide-info3.carousel-caption
+                            h1 A wide range of degrees offered through QC First
+                            p Including Computer Science, Nursing, Arts, Business.
+                            p
+                            a.btn.btn-lg.btn-primary.disabled(href='addcourse' role='button') Explore courses
+            a.carousel-control-prev(href='#carousel-info' data-slide='prev')
+                span.carousel-control-prev-icon
+            a.carousel-control-next(href='#carousel-info' data-slide='next')
+                span.carousel-control-next-icon
+        // End of carousel-container
+    .container-fluid
+        .row
+            .col-md-4
+                h2 Find your calling
+                p QC First offers over 200 majors across 12 colleges.
+            .col-md-4
+                h2 Undergraduate and Graduate education
+                p Where you are an undergraduate or graduate student, learn from the best.
+            .col-md-4
+                h2 Online program
+                p We offer online learning courses.
+        // footer goes here
+        hr
+        footer
+            .row
+            .col-md-6
+                p Copyright &copy; 2021 QCFirst
+            .col-md-6.text-md-right
+                a.text-dark(href='#') Terms of Use
+                span.text-muted.mx-2 |
+                a.text-dark(href='#') Privacy Policy
+        // End of container-fluid main content div
