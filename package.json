@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "David Acuqui, Jonathan Yulan",
+  "author": "David Acuqui",
   "license": "ISC",
   "dependencies": {
     "accesscontrol": "^2.2.1",

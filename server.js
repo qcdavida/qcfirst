@@ -17,6 +17,9 @@ const adminController = require('./controllers/adminController');
 
 const InitiateMongoServer = require("./config/db");
 InitiateMongoServer();
+const popDBcommand = require('./config/populateDB.js');
+popDBcommand.popDBCourses();
+popDBcommand.popDBUser();
 
 //===============EXPRESS================
 

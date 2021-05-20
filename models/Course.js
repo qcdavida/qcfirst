@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const userSchema = require('../models/User').schema;
+// const userSchema = require('../models/User').schema;
 
 const courseSchema = new Schema({
     courseid: Number,
-    courseSection: {type: Number, unique: true},
+    courseSection: Number,
     coursename: String,
     dept: String,
     instructor: String,
@@ -12,9 +12,9 @@ const courseSchema = new Schema({
     semester: String,
     // currentCapacity: Number,
     // maxCapacity: Number,
-    roster: [ {type: Schema.Types.ObjectId, ref: 'users'} ], //reference to the associated Users
+    roster: [ { type: Schema.Types.ObjectId, ref: 'Users' } ], //reference to the associated Users
     // daysOfWeek: [ String ],
-    classtime: Date,
+    // classtime: Date,
     courseStartDate: Date,
     enrollmentDeadline: Date,
     status: Boolean,
