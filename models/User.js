@@ -8,7 +8,8 @@ const userSchema = new Schema({
         type: String,
         required: "Please supply an email",
         lowercase: true,
-        trim: true
+        trim: true,
+        unique: true
     },
     password: {
         type: String,
@@ -22,7 +23,7 @@ const userSchema = new Schema({
         type: String,
         trim: true
     },
-    courseid: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Courses' } ], //reference to associated Courses
+    courseid: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Courses', require: false } ], //reference to associated Courses
     role: {
         type: String,
         default: 'student',

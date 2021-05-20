@@ -46,9 +46,7 @@ block content
             thead
               tr
                 th Course Number
-                |  
-                th Course Section
-                |                        
+                |                
                 th Course Name
                 |                      
                 th Instructor
@@ -63,12 +61,12 @@ block content
                 |                
             tbody
               each course in Courses
-                tr#rowID= course.get("courseSection")
-                  td.courseidinfo= course.get("courseid")
+                tr 
+                  td.courseinfo= course.get("courseNumber")
                   |                    
-                  td.coursesecinfo(id= count)= course.get("courseSection")
-                  |   
-                  td.coursenameinfo= course.get("coursename")
+                  //- td.coursesecinfo= course.get("courseSection")
+                  //- |   
+                  td.coursenameinfo= course.get("courseName")
                   |                      
                   td.courseprofinfo= course.get("instructor")
                   |                      
@@ -76,27 +74,22 @@ block content
                   |                      
                   td 
                   |  
-                  if(course.get("status") == true)                  
-                    td.coursestatusinfo open
+                  if(course.get("isCourseFull") == true)                  
+                    td.coursestatusinfo closed
                     |
                   else  
-                    td.coursestatusinfo closed
+                    td.coursestatusinfo open
                     |  
                   |    
-                  if(course.get("status") == true)                  
+                  if(course.get("isCourseFull") == false)                  
                     td.openCourse
-                     - var count = course.get("courseSection");
-                      //- button.btnids.btn.btn-primary(type='submit') Add
-                      button.btnids.btn.btn-primary(type='submit', id= { count }) Add
-                    //-  - count++
+                     button.btnids.btn.btn-primary(type='submit') Add
                     |
                   else  
                     td.closedCourse
                      button.btnclosed.btn.btn-danger(type='button') Closed
                     | 
-                  |                       
-                  //- td
-                  //-   button.btnids.btn.btn-primary(type='submit') Add
+                  |
       //- else
       //-  .row
       //-   .col-md-4

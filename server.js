@@ -18,8 +18,10 @@ const adminController = require('./controllers/adminController');
 const InitiateMongoServer = require("./config/db");
 InitiateMongoServer();
 const popDBcommand = require('./config/populateDB.js');
-popDBcommand.popDBCourses();
-popDBcommand.popDBUser();
+// popDBcommand.popDBCourses();
+// popDBcommand.popDBUser();
+// popDBcommand.addCoursesForUsers();
+// popDBcommand.deleteCourseFromUser();
 
 //===============EXPRESS================
 
@@ -168,11 +170,11 @@ app.get('/enrollment', isLoggedIn, function(req, res) {
     });
 });
 
-app.use('/addcourse', isLoggedIn, courseController.courselist);
-app.use('/dropcourse', isLoggedIn, courseController.dropCourselist);
-app.use('/searchform', isLoggedIn, courseController.searchlist);
-app.post('/savecourse', isLoggedIn, courseController.savecourse);
-app.post('/deletecourse', isLoggedIn, courseController.deletecourse);
+app.use('/addcourse', isLoggedIn, courseController.addPageCourselist);
+app.use('/dropcourse', isLoggedIn, courseController.dropPageCourselist);
+app.use('/searchform', isLoggedIn, courseController.searchPageList);
+app.post('/savecourse', isLoggedIn, courseController.saveCourseToUser);
+app.post('/deletecourse', isLoggedIn, courseController.deleteCourseFromUser);
 
 app.get('/logout', function(req, res) {
     req.logout();

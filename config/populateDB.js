@@ -3,78 +3,74 @@ const User = require('../models/User');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt-nodejs');
 
-// const InitiateMongoServer = require("./config/db");
-// InitiateMongoServer();
-
-// const db = mongoose.connection;
-// db.once('open', _ => {
-//   console.log('Database connected:', url)
-// })
-
-// db.on('error', err => {
-//   console.error('connection error:', err)
-// })
-
 const coursesArray = [
     {
-        courseid: 355,
-        courseSection: 4,
-        coursename: "Web Tech",
+        courseNumber: "355-04",
+        courseName: "Web Tech",
         dept: "Computer Science",
         instructor: "Jake deGoat",
-        description: "Learnt to develop web apps",
+        description: "Learn to develop web apps",
         semester: "Fall 2021",
+        currentCapacity: 0,
+        maxCapacity: 1,
         roster: [],
         courseStartDate: "09-02-2021",
-        enrollmentDeadline: "12-02-2021",
-        status: true, 
+        courseEndDate: "12-02-2021",
+        enrollmentDeadline: "08-02-2021",
+        isCourseFull: false, 
         credits: 3,
     },
     //Course 2
     {
-        courseid: 370,
-        courseSection: 1,
-        coursename: "Software Engineering",
+        courseNumber: "370-30",
+        courseName: "Software Engineering",
         dept: "Computer Science",
         instructor: "Stro Show",
         description: "Learn software engineering techniques",
         semester: "Fall 2021",
+        currentCapacity: 5,
+        maxCapacity: 5,
         roster: [],
         courseStartDate: "09-02-2021",
-        enrollmentDeadline: "12-02-2021",
-        status: true,
+        courseEndDate: "12-02-2021",
+        enrollmentDeadline: "08-02-2021",
+        isCourseFull: true,
         credits: 3,
     },
 
     //Course 3
     {
-        courseid: 370,
-        courseSection: 5,
+        courseNumber: "370-05",
         coursename: "Software Engineering",
         dept: "Computer Science",
         instructor: "Stro Show",
         description: "Learn software engineering techniques",
         semester: "Fall 2021",
+        currentCapacity: 0,
+        maxCapacity: 5,
         roster: [],
         courseStartDate: "09-02-2021",
-        enrollmentDeadline: "12-02-2021",
-        status: true,
+        courseEndDate: "12-02-2021",
+        enrollmentDeadline: "08-02-2021",
+        isCourseFull: false,
         credits: 3,
     },
 
     //Course 4
     {
-        courseid: 370,
-        courseSection: 7,
+        courseNumber: "370-07",
         coursename: "Software Engineering",
         dept: "Computer Science",
         instructor: "Stro Show",
         description: "Learn software engineering techniques",
         semester: "Fall 2021",
+        currentCapacity: 0,
+        maxCapacity: 5,
         roster: [],
         courseStartDate: "09-02-2021",
-        enrollmentDeadline: "12-02-2021",
-        status: false,
+        courseEndDate: "12-02-2021",
+        enrollmentDeadline: "08-02-2021",
+        isCourseFull: false,
         credits: 3,
     }
 ]
@@ -93,6 +89,8 @@ exports.popDBCourses = function(req, res) {
     });
 };
 
+//#rowID= course.get("courseSection")
+
 
 const usersArray = [
     //user 1 - student
@@ -101,7 +99,7 @@ const usersArray = [
       password: bcrypt.hashSync("123", bcrypt.genSaltSync(8), null),
       firstname: "Peter", 
       lastname: "Al",
-      courseid: [coursesArray[0]._id, coursesArray[1]._id],
+      courseid: [],
       role: "student"
     },
     //user 2 - instructor
@@ -110,7 +108,7 @@ const usersArray = [
         password: bcrypt.hashSync("123", bcrypt.genSaltSync(8), null),
         firstname: "Jake", 
         lastname: "deGoat",
-        courseid: [coursesArray[0]._id],
+        courseid: [],
         role: "instructor"
     },
     //user 3 - student 
@@ -128,7 +126,7 @@ const usersArray = [
         password: bcrypt.hashSync("123", bcrypt.genSaltSync(8), null),
         firstname: "Stro", 
         lastname: "Show",
-        courseid: [coursesArray[1]._id, coursesArray[2]._id, coursesArray[3]._id],
+        courseid: [],
         role: "instructor"
     },
 ]
@@ -142,3 +140,29 @@ exports.popDBUser = function(req, res) {
         }
     });
 };
+
+exports.addCoursesForUsers = async function(req, res){
+    const student = await User.findOne( { email: "120@gmail.com" } );
+    student.courseid = ["60a6de02c0e4eeaa980c93f0"];
+    // console.log(coursesArray[0]._id);
+    const doc = await student.save();
+    console.log(doc);
+}
+
+exports.deleteCourseFromUser = async function(req, res){
+    const courseId = "60a6de02c0e4eeaa980c93f0";
+    // const student = await User.findOne( { email: "120@gmail.com" } );
+    // student.courseid.pull( { _id: courseId});
+    // console.log("SECOND ONE: ")
+    // const doc = await student.save();
+    // console.log(doc);
+
+    User.findOne({email: "120@gmail.com"}, function(err,result){
+        if (err) {
+            console.log(err);            
+        }else{
+            result.courseid.pull(courseId);
+            result.save();
+        }
+    })
+}

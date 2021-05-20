@@ -36,9 +36,9 @@ block content
                   |                            
                   option(value='Arts', name='artsDept') Arts               
                 |                        
-                label(for='input') Course ID
+                label(for='input') Course Number
                 |                         
-                input#input.form-control(type='text', placeholder='courseid', name='courseidform')
+                input#input.form-control(type='text', placeholder='courseid', name='courseIdForm')
                 |
                 button#search-btn.btn.btn-primary(type='submit') Search course
         |             
@@ -53,8 +53,6 @@ block content
            |
            tr
             th Course Number
-            |   
-            th Course Section
             |
             th Course Name
             |                        
@@ -64,15 +62,13 @@ block content
           tbody
            each course in Courses
             tr
-             td.courseidinfo= course.get("courseid")
-             |  
-             td.coursesecinfo= course.get("courseSection")
-             |                      
-             td.coursenameinfo= course.get("coursename")
+             td.courseIdInfo= course.get("courseNumber")
+             |                    
+             td.courseNameInfo= course.get("courseName")
              |                      
              td 
-             |                      
-             td
+             |
+             td 
              |
       // footer goes here
       hr

@@ -16,7 +16,7 @@ block content
           |                   
           tbody
             tr
-              th Course Name
+              th Course Number
               |   
               th Course Section
               |
@@ -25,26 +25,22 @@ block content
               th Days
               |                      
               th Time
-              |                      
-              th Room
-              |                      
+              |                   
               th Drop Course
               |
           tbody
             each course in Courses
               tr
-                td.courseidinfo= course.get("courseid")
+                td.courseidinfo= course.get("courseNumber")
                 |  
                 td.coursesecinfo= course.get("courseSection")
                 |                      
-                td.coursenameinfo= course.get("coursename")
+                td.coursenameinfo= course.get("courseName")
                 |                      
                 td 
                 |                      
                 td
-                |
-                td.courseroominfo= course.get("room")
-                |                  
+                |                
                 td
                   button.deletebtn.btn.btn-danger(type='submit') Drop
         // footer goes here
