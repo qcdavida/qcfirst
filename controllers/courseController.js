@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { addCoursesForUsers } = require('../config/populateDB');
 const Course = require('../models/Course');
 const User = require('../models/User');
 
@@ -41,40 +42,49 @@ exports.searchPageList = function(req, res, next) {
 
 exports.saveCourseToUser = async function(req, res){
   const courseID = req.body.courseNumber;
-  let addedCourse = false;
-  let userID = "";
 
   try{
+    const course = await Course.findOne( { courseNumber: courseID } );
+    const queryUser = await User.findOneAndUpdate( { email: req.user.email } );
+    let courseFull = course.isCourseFull;
+    let isUserAlreadyEnrolled = (queryUser.courseid.indexOf(course._id) > -1);
+    
+    if(!course){
+      res.json( { success: false, message: "Course doesn't exist."});
+      return;
+    }
+    else{
+      //check to make sure the class is open and that the student isn't already enrolled in the class
+      if(!courseFull && !(isUserAlreadyEnrolled)){
+        const user = await User.findOneAndUpdate( { email: req.user.email },
+          { $push:  { courseid: course._id } }
+        );
 
-    //below code is working:
-    // const course = await Course.findOne( { courseNumber: courseID } );
-    // if(!course){
-    //   res.json( { success: false, message: "Course doesn't exist."});
-    //   return;
-    // }
-
-    // console.log("c id : " + course._id);
-
-    // const user = await User.findOneAndUpdate( { email: req.user.email },
-    //   { $push:  { courseid: course._id } }
-    // );
-    // console.log("user info: ")
-    // console.log(user);
-    // console.log(user._id);
-    // console.log(req.user.id);
-
-    // Course.findOneAndUpdate( { courseNumber: courseID },{ 
-    //   $inc: { currentCapacity: 1 },
-    //   $push: { roster: user._id },
-    // }).exec( function (err, course2){
-    //   if(err)
-    //     console.log(err);
-    //   course2.save();
-    //   console.log(course2);
-    //   console.log("c id : " + course2._id);
-    //   console.log("u id: " + user._id);
-    // });
-  }
+        //if adding the student makes the course reach maxCap then
+        //we set the isCourseFull field to true
+        if((course.currentCapacity + 1) === course.maxCapacity){
+          Course.findOneAndUpdate( { courseNumber: courseID },{ 
+            $inc: { currentCapacity: 1 },
+            $push: { roster: user._id },
+            $set: { isCourseFull: true }
+            }).exec( function (err){
+              if(err)
+                console.log(err);
+            });
+        }
+        //otherwise we do this
+        else{
+          Course.findOneAndUpdate( { courseNumber: courseID },{ 
+            $inc: { currentCapacity: 1 },
+            $push: { roster: user._id },
+            }).exec( function (err){
+              if(err)
+                console.log(err);
+            });
+        }
+      }
+    } //end of else statement
+  } //end of try block
   catch(e){
     console.error(e);
     res.status(400).send("Error while saving.")
