@@ -1,14 +1,16 @@
 $( document ).ready(function() {
 
+    //addes a course to a user
     $('#searchresultstable').on('click', '.btnids', function(){
       let rowID =  $(this).parent().parent().remove();
       // $(this).parent().parent().remove();
 
       let tr = $(this).closest('tr');
-      let courseID = tr.find(".courseinfo").text(); 
+      let courseUniqueID = tr.find(".courseInfo").text(); 
+      let courseSec = tr.find(".courseSecInfo").text(); 
 
       var tableData = {
-        courseNumber: courseID,
+        courseID: courseUniqueID
       }
 
       $.ajax({
@@ -20,7 +22,6 @@ $( document ).ready(function() {
           success : function(html) {
               // $(this).parent().parent().remove();
               rowID.remove();
-              alert("Success baby :)");
           }
       });
   })
@@ -29,10 +30,10 @@ $( document ).ready(function() {
   $('#dropclasstable').on('click', '.deletebtn', function(){
     let rowID =  $(this).parent().parent().remove();
     let tr = $(this).closest('tr');
-    let courseID = tr.find(".courseinfo").text(); 
+    let courseID = tr.find(".courseInfo").text(); 
 
     var tableData = {
-      courseNumber: courseID
+      courseUniqueID: courseID
     }
 
     $.ajax({
@@ -42,9 +43,7 @@ $( document ).ready(function() {
         data : JSON.stringify(tableData),
         // datatype: 'json',
         success : function(html) {
-            // $(this).parent().parent().remove();
             rowID.remove();
-            alert("Hate to see you go, but love watching you leave.");
         }
     });
   })

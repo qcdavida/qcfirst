@@ -15,7 +15,7 @@ block content
     |                   
     tbody
      tr
-      th Course Number
+      th Course
       |           
       th Course Name      
       |  
@@ -31,19 +31,17 @@ block content
     tbody
      each course in Courses
       tr
-       td.courseidinfo= course.get("courseid")
+       td.courseInfo= course.get("courseUniqueID")
+       |              
+       td.courseNameInfo= course.get("coursename")
        |                      
-       td.coursesecinfo= course.get("courseSection")
-       |                      
-       td.coursenameinfo= course.get("coursename")
-       |                      
-       td
+       td= course.get("semester")
        |                      
        td
        |                      
        td
        |             
-       td
+       td= course.get("currentCapacity")
        |                      
        td
         button.deletemycoursebtn.btn.btn-danger(type='button') Delete

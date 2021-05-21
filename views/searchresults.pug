@@ -45,8 +45,8 @@ block content
           table#searchresultstable.table.table-hover(class='.table-sm')
             thead
               tr
-                th Course Number
-                |                
+                th Course
+                |       
                 th Course Name
                 |                      
                 th Instructor
@@ -62,13 +62,11 @@ block content
             tbody
               each course in Courses
                 tr 
-                  td.courseinfo= course.get("courseNumber")
+                  td.courseInfo= course.get("courseUniqueID")
                   |                    
-                  //- td.coursesecinfo= course.get("courseSection")
-                  //- |   
-                  td.coursenameinfo= course.get("courseName")
+                  td.courseNameInfo= course.get("courseName")
                   |                      
-                  td.courseprofinfo= course.get("instructor")
+                  td.courseProfInfo= course.get("instructor")
                   |                      
                   td 
                   |                      

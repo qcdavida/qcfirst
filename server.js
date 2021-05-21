@@ -18,10 +18,9 @@ const adminController = require('./controllers/adminController');
 const InitiateMongoServer = require("./config/db");
 InitiateMongoServer();
 const popDBcommand = require('./config/populateDB.js');
+//Run these two commands, one at a time, to fill up the database with dummy info:
 // popDBcommand.popDBCourses();
 // popDBcommand.popDBUser();
-// popDBcommand.addCoursesForUsers();
-// popDBcommand.deleteCourseFromUser();
 
 //===============EXPRESS================
 
@@ -191,7 +190,7 @@ app.get('/instructorhome', isLoggedIn, userController.grantAccess('readAny', 'co
 });
 
 app.use('/managecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.listCourses);
-app.use('/roster', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.viewroster);
+app.use('/roster', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.viewRoster);
 
 app.get('/createcourse', isLoggedIn, userController.grantAccess('createAny', 'course'), function(req, res) {
     res.render('createcourse', {

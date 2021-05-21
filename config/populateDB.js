@@ -5,7 +5,9 @@ const bcrypt = require('bcrypt-nodejs');
 
 const coursesArray = [
     {
-        courseNumber: "355-04",
+        courseNumber: "355",
+        courseSection: "05",
+        courseUniqueID: "355-05",
         courseName: "Web Tech",
         dept: "Computer Science",
         instructor: "Jake deGoat",
@@ -17,12 +19,13 @@ const coursesArray = [
         courseStartDate: "09-02-2021",
         courseEndDate: "12-02-2021",
         enrollmentDeadline: "08-02-2021",
-        isCourseFull: false, 
-        credits: 3,
+        isCourseFull: false
     },
     //Course 2
     {
-        courseNumber: "370-30",
+        courseNumber: "370",
+        courseSection: "30",
+        courseUniqueID: "370-30",
         courseName: "Software Engineering",
         dept: "Computer Science",
         instructor: "Stro Show",
@@ -34,14 +37,15 @@ const coursesArray = [
         courseStartDate: "09-02-2021",
         courseEndDate: "12-02-2021",
         enrollmentDeadline: "08-02-2021",
-        isCourseFull: true,
-        credits: 3,
+        isCourseFull: true
     },
 
     //Course 3
     {
-        courseNumber: "370-05",
-        coursename: "Software Engineering",
+        courseNumber: "370",
+        courseSection: "05",
+        courseUniqueID: "370-05",
+        courseName: "Software Engineering",
         dept: "Computer Science",
         instructor: "Stro Show",
         description: "Learn software engineering techniques",
@@ -52,14 +56,15 @@ const coursesArray = [
         courseStartDate: "09-02-2021",
         courseEndDate: "12-02-2021",
         enrollmentDeadline: "08-02-2021",
-        isCourseFull: false,
-        credits: 3,
+        isCourseFull: false
     },
 
     //Course 4
     {
-        courseNumber: "370-07",
-        coursename: "Software Engineering",
+        courseNumber: "370",
+        courseSection: "07",
+        courseUniqueID: "370-07",
+        courseName: "Software Engineering",
         dept: "Computer Science",
         instructor: "Stro Show",
         description: "Learn software engineering techniques",
@@ -70,8 +75,7 @@ const coursesArray = [
         courseStartDate: "09-02-2021",
         courseEndDate: "12-02-2021",
         enrollmentDeadline: "08-02-2021",
-        isCourseFull: false,
-        credits: 3,
+        isCourseFull: false
     }
 ]
 

@@ -52,7 +52,7 @@ block content
            caption #{ user.lastname }'s current schedule
            |
            tr
-            th Course Number
+            th Course
             |
             th Course Name
             |                        
@@ -62,7 +62,7 @@ block content
           tbody
            each course in Courses
             tr
-             td.courseIdInfo= course.get("courseNumber")
+             td.courseNumInfo= (course.get("courseNumber") + '-' + course.get("courseSection"))
              |                    
              td.courseNameInfo= course.get("courseName")
              |                      

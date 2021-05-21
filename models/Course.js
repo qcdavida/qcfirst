@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 // const userSchema = require('../models/User').schema;
 
 const courseSchema = new Schema({
-    courseNumber: { type: String, unique: true},
+    courseNumber: String,
+    courseSection: String,
+    courseUniqueID: { type: String, unique: true },
     courseName: String,
     dept: String,
     instructor: String,
@@ -17,8 +19,7 @@ const courseSchema = new Schema({
     courseStartDate: Date,
     courseEndDate: Date,
     enrollmentDeadline: Date,
-    isCourseFull: Boolean,
-    credits: { type: Number, min: 1, max: 4, required: true }
+    isCourseFull: Boolean
 });
 
 module.exports = mongoose.model('Courses', courseSchema);

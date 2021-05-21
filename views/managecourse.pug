@@ -14,10 +14,8 @@ block content
      caption #{ userName }'s current courses
      |                   
      tr
-      th Course Number
-      |                      
-      th Course Section
-      |    
+      th Course
+      |   
       th Course Name
       |                      
       th Semester
@@ -25,33 +23,34 @@ block content
       th Days
       |                      
       th Class Time
-      |                
-      th Room
-      |                      
+      |                     
       th Num. of Students
       |                      
       th Roster
     tbody
      each course in Courses
-      tr.rowid= course.get("courseSection")
-       td.courseidinfo= course.get("courseid")
+      tr
+       td.courseIdInfo= course.get("courseUniqueID")
+       |                    
+       td.courseNameInfo= course.get("courseName")
        |                      
-       td.coursesecinfo= course.get("courseSection")
-       |                      
-       td.coursenameinfo= course.get("coursename")
-       |                      
-       td 
+       td.courseSemInfo= course.get("semester")
        |
        td 
        |                      
        td 
        |                   
-       td.courseroominfo= course.get("room")
-       |                      
-       td 25/32
+       td.courseRosterSizeInfo= course.get("currentCapacity")
+        span /
+        |
+        span= course.get("maxCapacity")
        |                      
        td
-        button.viewrostertbtn.btn.btn-info(type='submit') View
+        button.viewrostertbtn.btn.btn-info(type='submit' data-toggle="collapse" data-target='#myRoster') View
+      //- tr.collapse(id='myRoster')
+      //-  each student in course.roster
+      //-  td
+      //-   div
       // footer goes here
   hr
   |          

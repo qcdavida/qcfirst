@@ -16,10 +16,8 @@ block content
           |                   
           tbody
             tr
-              th Course Number
+              th Course
               |   
-              th Course Section
-              |
               th Course Name
               |                        
               th Days
@@ -31,14 +29,12 @@ block content
           tbody
             each course in Courses
               tr
-                td.courseidinfo= course.get("courseNumber")
-                |  
-                td.coursesecinfo= course.get("courseSection")
-                |                      
-                td.coursenameinfo= course.get("courseName")
-                |                      
-                td 
-                |                      
+                td.courseInfo= course.get("courseUniqueID")
+                |                   
+                td.courseNameInfo= course.get("courseName")
+                |                                          
+                td
+                | 
                 td
                 |                
                 td

@@ -1,17 +1,14 @@
 $(document).ready(function() {
-
-    //this is working!!
     $('#prof-delete-table').on('click', '.deletemycoursebtn', function(){
         let rowID =  $(this).parent().parent().remove();
         // $(this).parent().parent().remove();
 
         let tr = $(this).closest('tr');
-        let courseID = tr.find(".courseidinfo").text();
+        let courseID = tr.find(".courseInfo").text();
         let courseSection = tr.find(".coursesecinfo").text();
 
         var myData = {
-            courseId: courseID,
-            courseSection: courseSection,
+            courseUniqueID: courseID
         }
 
         $.ajax({
@@ -20,10 +17,19 @@ $(document).ready(function() {
             url : "/profdeletecourse",
             data : JSON.stringify(myData),
             // datatype: 'json',
-            success : function(html) {
-                // $(this).parent().parent().remove();
+            success : function() {
                 rowID.remove();
             }
         });
     })
+
+    $('#profrostertable').click(function () {
+        if($("#collapseme").hasClass("out")) {
+            $("#collapseme").addClass("in");
+            $("#collapseme").removeClass("out");
+        } else {
+            $("#collapseme").addClass("out");
+            $("#collapseme").removeClass("in");
+        }
+    });
 })

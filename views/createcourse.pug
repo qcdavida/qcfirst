@@ -1,5 +1,8 @@
 extends instructorlayout 
 
+block append scripts
+  script(src='/Javascript/preventDuplicate.js')
+
 block append styles
     link(rel='stylesheet' type='text/css' href='/CSS/createcoursestyles.css')
 
@@ -14,23 +17,34 @@ block content
      .card-body.px-lg-5.pt-0
       form.text-center(action='/createcourse' method='post')
        #course-id-form.md-form
-        label(for='course-id-form') Course ID:
+        label(for='courseNumForm') Course Number:
         |                            
-        input#course-id-form.form-control(type='text' name='courseidform')
+        input#courseNumForm.form-control(type='text' name='courseNumber')
         |                         
        .md-form
-        label(for='course-name-form') Course Section:
+        label(for='courseSecForm') Course Section:
         |                            
-        input#course-name-form.form-control(type='text' name='courseSection')
-        |                         
-       span#sems-span Semester:
-       |                         
-       select.mdb-select(name='termSelection')
-        option(value="" disabled) Choose term
-        option(value='Fall 2021', name='nextTermOption') Fall 2021
+        input#courseNameForm.form-control(type='text' name='courseSection')
+        |    
+       .md-form
+        label(for='courseNameForm') Course Name:
         |                            
-        option(value='Summer 2021', name='currentTermOption') Summer 2021
+        input#courseSectionForm.form-control(type='text' name='courseName')
+        |     
+       .md-form
+        label(for='courseDescForm') Course Description:
+        |                            
+        input#courseDescForm.form-control(type='text' name='courseDescription')
+        |  
+       .md-form                     
+        span#sems-span Semester:
         |                         
+        select.mdb-select(name='termSelection')
+         option(value="" disabled) Choose term
+         option(value='Fall 2021', name='nextTermOption') Fall 2021
+         |                            
+         option(value='Summer 2021', name='currentTermOption') Summer 2021
+         |                         
        .md-form
         span#sems-span Department:
         |    
@@ -42,46 +56,63 @@ block content
          |                            
          option(value='English', name='englishDept') English 
          |                            
-         option(value='Arts', name='artsDept') Arts                   
+         option(value='Arts', name='artsDept') Arts                
        .md-form
         label(for='class-size-form') Class capacity:
         |                            
         input#class-size-form.form-control(type='text' name='courseCapacity')
-       span#day-selection Days: 
-       select.mdb-select(name='daySelection')
-        option(value="" disabled) Choose Day
-        |
-        option(value='Monday', name='monday') Monday
-        |                            
-        option(value='Tuesday', name='tuesday') Tuesday
-        |                            
-        option(value='Wednesday', name='wednesday') Wednesday 
-        |                            
-        option(value='Thursday', name='thursday') Thursday
-        |    
-        option(value='Friday', name='friday') Friday
-        |            
-       span#time-selection Time:
-       |                         
-       select.mdb-select(name='timeSelection')
-        option(value='', disabled='') Choose time
-        |                            
-        option(value='9:00am-10:15am', selected='' name='9timeslot') 9:00am-10:15am
-        |                            
-        option(value='10:30am-11:45am' name='10timeslot') 10:30am-11:45am
-        |                            
-        option(value='12:00pm-1:15pm' name='12timeslot') 12:00pm-1:15pm
-        |                            
-        option(value='1:30pm-2:45pm' name='1timeslot') 1:30pm-2:45pm
-        |                            
-        option(value='3:00pm-4:15pm' name='3timeslot') 3:00pm-4:15pm
-        |                            
-        option(value='4:30pm-5:45pm' name='4timeslot') 4:30pm-5:45pm
-        |                            
-        option(value='6:00pm-7:15pm' name='6timeslot') 6:00pm-7:15pm
-        |                            
-        option(value='7:30pm-8:45pm' name='7timeslot') 7:30pm-8:45pm
+       .md-form
+        span#day-selection Days: 
+        select.firstDayOption.mdb-select(name='firstDay')
+         option(value="" disabled) Choose Day
+         |
+         option(value='Monday', name='firstMonday') Monday
+         |                            
+         option(value='Tuesday', name='firstTuesday') Tuesday
+         |                            
+         option(value='Wednesday', name='firstWednesday') Wednesday 
+         |                            
+         option(value='Thursday', name='thursday') Thursday
+         |    
+         option(value='Friday', name='friday') Friday
+         |
+        span   
+        span#day-selection And  
+        select.secondDayOption.mdb-select(name='secondDay')
+         option(value="" disabled) Choose Day
+         |
+         option(value='Monday', name='monday') Monday
+         |                            
+         option(value='Tuesday', name='tuesday') Tuesday
+         |                            
+         option(value='Wednesday', name='wednesday') Wednesday 
+         |                            
+         option(value='Thursday', name='thursday') Thursday
+         |    
+         option(value='Friday', name='friday') Friday
+         |
+       .md-form            
+        span#time-selection Time:
         |                         
+        select.mdb-select(name='timeSelection')
+         option(value='', disabled='') Choose time
+         |                            
+         option(value='9:00am-10:15am', selected='' name='9timeslot') 9:00am-10:15am
+         |                            
+         option(value='10:30am-11:45am' name='10timeslot') 10:30am-11:45am
+         |                            
+         option(value='12:00pm-1:15pm' name='12timeslot') 12:00pm-1:15pm
+         |                            
+         option(value='1:30pm-2:45pm' name='1timeslot') 1:30pm-2:45pm
+         |                            
+         option(value='3:00pm-4:15pm' name='3timeslot') 3:00pm-4:15pm
+         |                            
+         option(value='4:30pm-5:45pm' name='4timeslot') 4:30pm-5:45pm
+         |                            
+         option(value='6:00pm-7:15pm' name='6timeslot') 6:00pm-7:15pm
+         |                            
+         option(value='7:30pm-8:45pm' name='7timeslot') 7:30pm-8:45pm
+         |                         
        button#course-btn.btn.btn-outline-info.btn-rounded.btn-block.my-4.waves-effect.z-depth-0(type='submit') Create course
         |                         
     // end of form div
