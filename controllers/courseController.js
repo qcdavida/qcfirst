@@ -40,70 +40,175 @@ exports.searchPageList = function(req, res, next) {
 
 
 exports.saveCourseToUser = async function(req, res){
-  // const courseID = req.body.courseId;
-  // const courseSec = req.body.courseSection;
-  //Above code was last working.  Find out where req.body.courseId is coming from
-
   const courseID = req.body.courseNumber;
-  console.log("req obj: " + req.body.courseNumber);
-  console.log("c id  " + courseID);
+  let addedCourse = false;
+  let userID = "";
 
-  //const course = await Course.findOne({ courseid: courseID }).and([{ courseSection : courseSec }]);
-  const course = await Course.findOne({ courseNumber: courseID });
+  try{
 
-  if(course){
-    console.log("Found!")
-    console.log(course._id);
+    //below code is working:
+    // const course = await Course.findOne( { courseNumber: courseID } );
+    // if(!course){
+    //   res.json( { success: false, message: "Course doesn't exist."});
+    //   return;
+    // }
+
+    // console.log("c id : " + course._id);
+
+    // const user = await User.findOneAndUpdate( { email: req.user.email },
+    //   { $push:  { courseid: course._id } }
+    // );
+    // console.log("user info: ")
+    // console.log(user);
+    // console.log(user._id);
+    // console.log(req.user.id);
+
+    // Course.findOneAndUpdate( { courseNumber: courseID },{ 
+    //   $inc: { currentCapacity: 1 },
+    //   $push: { roster: user._id },
+    // }).exec( function (err, course2){
+    //   if(err)
+    //     console.log(err);
+    //   course2.save();
+    //   console.log(course2);
+    //   console.log("c id : " + course2._id);
+    //   console.log("u id: " + user._id);
+    // });
   }
-  else{
-    console.log("Not found");
+  catch(e){
+    console.error(e);
+    res.status(400).send("Error while saving.")
   }
 
-  const student = await User.findOne( { email: "120@gmail.com" } );
-  console.log("Student info: " + student.firstname);
 
-  //if course is full, user can't add the course
-  if(course.isCourseFull === true){
-    res.send("Sorry, course is full");
-  }
-  else{
-    // student.courseid.push( { _id: course._id } );
-    // course.roster.push( {_id: student.id } );
-    // course
-    // student.courseid.push( { _id: course._id } );
-    console.log("in else, c id: " + course._id );
-    student.courseid.push( { _id: course._id } );
-    course.roster.push( {_id: student.id } );
-    // course.roster.$addToSet ( {_id: student.id } );
 
-    // student.updateOne(
-    //   { $addToSet:  { courseid: course._id } }
-    // )
+}//end of savecoursetouser
 
-    // course.updateOne(
-    //   { $inc: { currentCapacity: 1 } },
-    //   { $addToSet:  { roster: student._id } }
-    //   );
 
-    if(course.currentCapacity === course.maxCapacity){
-      course.updateOne( { isCourseFull: true });
-    }
+//this is the newer version that work-ish
+// exports.saveCourseToUser = async function(req, res){
+//   const courseID = req.body.courseNumber;
+//   let addedCourse = false;
+//   let userID = "";
 
-    const doc = await student.save();
-    const doc2 = await course.save();
-    console.log(doc);
-    console.log(doc2);
+//   console.log("up here: " + addedCourse);
+//   Course.findOne({ courseNumber: courseID }, function(err, course){
+//     if(err)
+//       console.log(err);
+
+//     if(course){
+//       console.log("course info:");
+//       console.log(course);
+
+//       User.findOne( { email: req.user.email }, function(err, user){
+//         if(err)
+//           console.log(err);
+        
+//         if(user){
+//           console.log("User info:")
+//           console.log(user);
+//           userID = user._id;
+//           console.log("userID: " + userID);
+//           user.updateOne(
+//             { $push:  { courseid: course._id } },
+//             function (err) {
+//               if (err) 
+//                 console.log("error up");
+//               else{
+//                 addedCourse = true;
+//                 console.log("in here: " + addedCourse);
+//               }
+//         });
+//         }
+//       })
+
+//       console.log("down here: " + addedCourse);
+//       if(addedCourse){
+//         console.log("We made it");
+//         console.log(course);
+//         course.updateOne(
+//           { $inc: { currentCapacity: 1 } },
+//           { $push:  { roster: req.user.id } }
+//           , function(error){
+//             if(error)
+//               console.log(error);
+//         });
   
-    if(doc){
-      res.render('enrollment', {
-        user: req.user,
-        });
-    }
-    else{
-      console.log("error");
-    }
-  }
-}
+//         console.log(course.currentCapacity);
+//         console.log("^^");
+  
+//         if(course.currentCapacity === course.maxCapacity){
+//           course.UpdateOne(
+//             { $set: { isCourseFull: true} },
+//             function(error){
+//               console.log(error);
+//           })
+//         }
+//       }
+//     }
+//   });
+
+// }
+
+//this was the original version:
+// exports.saveCourseToUser = async function(req, res){
+//   // const courseID = req.body.courseId;
+//   // const courseSec = req.body.courseSection;
+//   //Above code was last working.  Find out where req.body.courseId is coming from
+
+//   const courseID = req.body.courseNumber;
+
+//   //const course = await Course.findOne({ courseid: courseID }).and([{ courseSection : courseSec }]);
+//   const course = await Course.findOne({ courseNumber: courseID });
+//   const student = await User.findOne( { email: req.user.email } );
+
+//   console.log("course info:");
+//   console.log(course);
+//   console.log("");
+//   console.log("student info:");
+//   console.log(student);
+//   //if course is full, user can't add the course
+//   console.log("second info: " + course.isCourseFull)
+//   if(course.isCourseFull === true){
+//     res.send("Sorry, course is full");
+//   }
+//   else{
+//     console.log("in else, c id: " + course._id );
+//     // Next two lines are working:
+//     student.courseid.push( { _id: course._id } );
+//     course.roster.push( {_id: student.id } );
+//     course.currentCapacity.inc();
+//     course.currentCapacity.update({ $inc: { currentCapacity: 1 } });
+
+//     // student.updateOne(
+//     //   { $push:  { courseid: course._id } },
+//     //   function (err) {
+//     //       if (err) 
+//     //         console.log("error up");
+//     //   });
+
+//     // course.updateOne(
+//     //   { $inc: { currentCapacity: 1 } },
+//     //   { $push:  { roster: student._id } }
+//     //   , function(error){
+//     //     console.log(error);
+//     //   });
+
+//     // console.log("roster count: " + course.currentCapacity);
+//     // if(course.currentCapacity === course.maxCapacity){
+//     //   course.updateOne( { isCourseFull: true });
+//     //   console.log("Upcount++");
+//     // }
+//     // else{
+//     //   console.log("not equal");
+//     // }
+
+//     const doc = await student.save();
+//     const doc2 = await course.save();
+//     console.log(doc);
+//     console.log(doc2);
+//   }
+// }
 
 exports.deleteCourseFromUser= async function(req, res){
   // const courseID = req.body.courseId;
