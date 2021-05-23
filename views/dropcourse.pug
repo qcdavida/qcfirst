@@ -1,58 +1,59 @@
 extends layout
 
+block title
+ title Drop a course
+
 block append scripts
-  script(src='/Javascript/searchCourse.js')
+ script(src='/Javascript/searchCourse.js')
   
 block append styles
-  link(rel='stylesheet', type='text/css', href='../CSS/dropcoursestyles.css')
+ link(rel='stylesheet' type='text/css' href='/CSS/dropcoursestyles.css')
 
 block content
-    .container-fluid
-      .table-responsive
-        if course 
-        table#dropclasstable.table.table-hover
-          thead
-          caption #{ userName }'s current schedule
-          |                   
-          tbody
-            tr
-              th Course
-              |   
-              th Course Name
-              |                        
-              th Days
-              |                      
-              th Time
-              |                   
-              th Drop Course
-              |
-          tbody
-            each course in Courses
-              tr
-                td.courseInfo= course.get("courseUniqueID")
-                |                   
-                td.courseNameInfo= course.get("courseName")
-                |                                          
-                td
-                | 
-                td
-                |                
-                td
-                  button.deletebtn.btn.btn-danger(type='submit') Drop
-        // footer goes here
-      hr
-      |          
-      footer
-        .row
-          .col-md-6
-            p Copyright &copy; 2021 QC First
-          |                
-          .col-md-6.text-md-right
-            a.text-dark(href='#') Terms of Use
-            |  
-            |                   
-            span.text-muted.mx-2 |
-            |  
-            |                   
-            a.text-dark(href='#') Privacy Policy
-    // End of container-fluid main content div
+ .container-fluid
+  .table-responsive
+   if(Courses)
+    table#dropclasstable.table.table-hover
+     thead
+      caption #{ userName }'s current schedule
+      |                   
+      tbody
+       tr
+        th Course
+        |   
+        th Course Name
+        |                        
+        th Days
+        |                      
+        th Time
+        |                   
+        th Drop Course
+        |
+      tbody
+       each course in Courses
+        tr
+         td.courseInfo= course.get("courseUniqueID")
+         |                   
+         td.courseNameInfo= course.get("courseName")
+         |                                          
+         td
+         | 
+         td
+         |                
+         td
+          button.deletebtn.btn.btn-danger(type='submit') Drop
+  hr
+  |          
+  footer
+   .row
+    .col-md-6
+     p Copyright &copy; 2021 QC First
+     |                
+    .col-md-6.text-md-right
+     a.text-dark(href='#') Terms of Use
+     |  
+     |                   
+     span.text-muted.mx-2 |
+     |  
+     |                   
+     a.text-dark(href='#') Privacy Policy

@@ -1,5 +1,11 @@
 extends layout
 
+block title
+ title Signup
+
+block append styles
+  link(rel='stylesheet' type='text/css' href='/CSS/signupstyles.css')
+
 block content
   block content
     .signup-form.container-fluid
@@ -31,21 +37,6 @@ block content
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error Message</small>
-          //- .form-group.col-sm-12.col-md-12.col-lg-12.text-md-center
-          //-   .btn-group(role='group')
-          //-     .form-group.col-sm-12.col-md-12.col-lg-12.text-md-center
-          //-       input#validationCustom03(type='radio', name='student', placeholder='student', required='', hidden='')
-          //-       label.btn.btn-primary(for='validationCustom03') Student
-          //-       input#validationCustom04(type='radio', name='instructor', placeholder='teacher', required='', hidden='')
-          //-       label.btn.btn-primary(for='validationCustom04') Teacher
-          //-       br
-          //-       .valid-feedback  Looks Good!
-          //-       .invalid-feedback  Needs to Be Filled
-                //
-                  F
-                  <i class="fas fa-check-circle"></i>
-                  <i class="fas fa-exclamation-circle"></i>
-                  <small>Error Message</small>
           .form-group.col-sm-12.col-md-12.col-lg-12
             label.form-label(for='validationCustom05') QC Email
             input#validationCustom05.form-control(type='email', name='email', placeholder='@qcfirst.edu', required='')

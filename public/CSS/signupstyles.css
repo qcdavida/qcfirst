@@ -33,6 +33,10 @@ body{
     background-size: cover;
 }
 
+#form{
+    padding-top: 10%;
+}
+
 .form-control{
     height: 50px;
     box-shadow: none;
@@ -85,8 +89,6 @@ body{
     background: #f2f3f7;
     padding: 30px;
 }
-
-
 
 .signup-form input[type="checkbox"] {
     margin-top: 7px;

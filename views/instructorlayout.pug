@@ -11,8 +11,9 @@ doctype html
 html(lang='en')
   head
     meta(charset='utf-8')       
-    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')     
-    title Professor homepage
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    block title     
+     title Professor homepage
     block scripts
       script(src='/Javascript/jquery-3.0.0.min.js')
       script(src='/Javascript/bootstrap.min.js')
@@ -32,7 +33,9 @@ html(lang='en')
       #navbarCollapse.collapse.navbar-collapse
        .navbar-nav.navLinks
         a.nav-item.nav-link(href='/instructorhome') Home
-        a.nav-item.nav-link(href='/managecourse') Manage Courses 
+        a.nav-item.nav-link(href='/managecourse') My Courses 
+        a.nav-item.nav-link(href='/createcourse') Create Course 
+        a.nav-item.nav-link(href='/deletecourse') Delete Course 
        form.form-inline.ml-auto.navSearchLink
         input.form-control.mr-sm-2(type='text' placeholder='Search courses..')                  
         button.btn.btn-outline-light(type='submit') Search               

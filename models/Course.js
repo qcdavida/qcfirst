@@ -14,8 +14,8 @@ const courseSchema = new Schema({
     currentCapacity: Number,
     maxCapacity: Number,
     roster: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Users', require: false } ], //reference to the associated Users
-    // daysOfWeek: [ String ],
-    // classtime: Date,
+    // classDays: { dayOne: String, dayTwo: String },
+    // classTime: String,
     courseStartDate: Date,
     courseEndDate: Date,
     enrollmentDeadline: Date,

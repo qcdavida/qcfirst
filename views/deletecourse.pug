@@ -1,17 +1,20 @@
 extends instructorlayout
 
+block title
+ title Delete Course
+
 block append scripts
-  script(src='/Javascript/instructorCourse.js')
+ script(src='/Javascript/instructorCourse.js')
 
 block append styles
-  link(rel='stylesheet', type='text/css', href='/CSS/deletecoursestyles.css')
+ link(rel='stylesheet' type='text/css' href='/CSS/deletecoursestyles.css')
 
 block content
  #delete-course-container.container-fluid
   .table-responsive
    table#prof-delete-table.table.table-hover
     thead
-    caption My courses
+    caption #{ user.lastname }'s current schedule
     |                   
     tbody
      tr
@@ -45,7 +48,6 @@ block content
        |                      
        td
         button.deletemycoursebtn.btn.btn-danger(type='button') Delete
-      // footer goes here
   hr
   |          
   footer
@@ -61,4 +63,3 @@ block content
      |  
      |                   
      a.text-dark(href='#') Privacy Policy
-    // End of container-fluid main content div

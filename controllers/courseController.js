@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { addCoursesForUsers } = require('../config/populateDB');
+// const mongoose = require('mongoose');
+// const { addCoursesForUsers } = require('../config/populateDB');
 const Course = require('../models/Course');
 const User = require('../models/User');
 
@@ -15,9 +15,9 @@ exports.addPageCourselist = function(req, res, next) {
 };
 
 //Display the user's schedule in the drop course page
-exports.dropPageCourselist = function(req, res, next) {
-  const courseIDs = req.user.courseid;
-  Course.find().where('_id').in(courseIDs).exec((err, courses) => {
+exports.dropPageCourselist = function(req, res) {
+  const courseID = req.user.courseid;
+  Course.find().where('_id').in(courseID).exec((err, courses) => {
     res.render('dropcourse', {
       user: req.user,
       Courses: courses
@@ -32,23 +32,27 @@ exports.searchPageList = function(req, res, next) {
   const courseSemester = req.body.termselection;
 
   Course.find({ courseNumber: courseID }).and([{ dept: courseDept }, { semester: courseSemester }]).exec((err, courses) => {
-    res.render('searchresults', {
-      user: req.user,
-      Courses: courses
-    });
+    //if no courses were found, only pass the user
+    if(courses.length === 0){
+      res.render('searchresults', {
+        user: req.user
+      });
+    }
+    //if found, pass the user and courses
+    else{
+      res.render('searchresults', {
+        user: req.user,
+        Courses: courses
+      });
+    }
   })
 };
 
 exports.saveCourseToUser = async function(req, res){
   const courseID = req.body.courseID;
-  console.log("c id var top");
-  console.log(courseID);
 
   try{
     const course = await Course.findOne( { courseUniqueID: courseID } );
-    console.log("course")
-    console.log(course)
-
     const queryUser = await User.findOne( { email: req.user.email } );
     let courseFull = course.isCourseFull;
     let isUserAlreadyEnrolled = (queryUser.courseid.indexOf(course._id) > -1);
@@ -76,7 +80,6 @@ exports.saveCourseToUser = async function(req, res){
                 console.log(err);
             });
         }
-        //otherwise we do this
         else{
           Course.findOneAndUpdate( { courseUniqueID: courseID },{ 
             $inc: { currentCapacity: 1 },
@@ -86,8 +89,8 @@ exports.saveCourseToUser = async function(req, res){
                 console.log(err);
             });
         }
-      }
-    } //end of else statement
+      }// end of nested if 
+    } //end of outer else statement
   } //end of try block
   catch(e){
     console.error(e);

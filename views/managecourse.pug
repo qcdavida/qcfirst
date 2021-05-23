@@ -1,10 +1,13 @@
 extends instructorlayout 
 
+block title
+ title Manage Courses
+
 block append scripts
-  script(src='/Javascript/instructorCourse.js')
+ script(src='/Javascript/instructorCourse.js')
 
 block append styles
-    link(rel='stylesheet', type='text/css', href='/CSS/managecoursesstyles.css')
+ link(rel='stylesheet' type='text/css' href='/CSS/managecoursesstyles.css')
 
 block content
  #manage-course-container.container-fluid
@@ -46,12 +49,7 @@ block content
         span= course.get("maxCapacity")
        |                      
        td
-        button.viewrostertbtn.btn.btn-info(type='submit' data-toggle="collapse" data-target='#myRoster') View
-      //- tr.collapse(id='myRoster')
-      //-  each student in course.roster
-      //-  td
-      //-   div
-      // footer goes here
+        button.viewrosterbtn.btn.btn-info(type='submit') View
   hr
   |          
   footer
@@ -67,4 +65,3 @@ block content
      |  
      |                   
      a.text-dark(href='#') Privacy Policy
-    // End of container-fluid main content div

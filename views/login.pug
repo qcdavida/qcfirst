@@ -8,9 +8,9 @@ doctype html
   Photos taken from https://unsplash.com/ (search keywords: college, professor, student)
 head
   meta(charset='utf-8')
-  meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
-  title Log in page
-  link(rel='stylesheet', type='text/css', href='/CSS/loginstyles.css')
+  meta(name='viewport' content='width=device-width' initial-scale=1, shrink-to-fit='no')
+  title Login
+  link(rel='stylesheet' type='text/css' href='/CSS/loginstyles.css')
   link#bootstrap-css(href='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css', rel='stylesheet')
   script(src='//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js')
   script(src='//code.jquery.com/jquery-1.11.1.min.js')
@@ -30,10 +30,10 @@ head
       form(method='post', action='/login')
         .form-group
           label.text-primary User Name
-          input.form-control-lg(type='text', name='email', placeholder='@qcfirst.edu')
+          input.form-control-lg(type='text' name='email' placeholder='@qcfirst.edu')
         .form-group
           label.text-primary Password
-          input.form-control-lg(type='password', name='password', placeholder='XXXXXXX')
+          input.form-control-lg(type='password' name='password' placeholder='XXXXXXX')
         button.btn.btn-black(type='submit') Login
         button.btn.btn-outline-info
           a(href='/signup') Register

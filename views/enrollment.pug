@@ -1,38 +1,36 @@
 extends layout
 
+block title
+ title Enrollment Center
 
 block append styles
-  link(rel='stylesheet', type='text/css', href='../CSS/enrollmentstyles.css')
+ link(rel='stylesheet', type='text/css', href='/CSS/enrollmentstyles.css')
 
 block content
-    .container-fluid
-        .row
-            #left-panel-info.col-md-6
-                img(src='../Images/student1.jpg', alt='student', style='width: 100%')
-                |                     
-                a(href='addcourse')
-                    button#reg-btn.btn.btn-primary(type='button') Register course 
-                        span= userName
-                |                 
-            #right-panel-info.col-md-6
-                img(src='../Images/college3.jpg', alt='collegeroom', style='width:100%')
-                |                     
-                a(href='dropcourse')
-                    button#drop-btn.btn.btn-primary(type='button') Drop course
-        // footer goes here
-        hr
-        |             
-        footer
-            .row
-                .col-md-6
-                    p Copyright &copy; 2021 QC First
-                    |                 
-                .col-md-6.text-md-right
-                    a.text-dark(href='#') Terms of Use
-                    |  
-                    |                     
-                    span.text-muted.mx-2 |
-                    |  
-                    |                     
-                    a.text-dark(href='#') Privacy Policy
-    // End of container-fluid main content div
+ .container-fluid
+  .row
+   #left-panel-info.col-md-6
+    img(src='/Images/student1.jpg' alt='student' style='width: 100%')
+    |                     
+    a(href='/addcourse')
+     button#reg-btn.btn.btn-primary(type='button') Register course                  
+   #right-panel-info.col-md-6
+    img(src='/Images/college3.jpg' alt='collegeroom' style='width: 100%')
+    |                     
+    a(href='/dropcourse')
+     button#drop-btn.btn.btn-primary(type='button') Drop course
+  hr
+  |             
+  footer
+   .row
+    .col-md-6
+     p Copyright &copy; 2021 QC First
+     |                 
+    .col-md-6.text-md-right
+     a.text-dark(href='#') Terms of Use
+     |  
+     |                     
+     span.text-muted.mx-2 |
+     |  
+     |                     
+     a.text-dark(href='#') Privacy Policy

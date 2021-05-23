@@ -136,23 +136,18 @@ app.post('/login', passport.authenticate('local-login',
                 res.redirect('/instructorhome');
             }
             else{
-                res.redirect('/index');
+                res.redirect('/');
             }
             }
         }
 );
-
-// app.post('/login', passport.authenticate('local-login', {
-//     successRedirect : '/index',
-//     failureRedirect : '/login'
-// }));
 
 app.get('/signup', function(req, res){
     res.render('signup');
 });
 
 app.post('/signup', passport.authenticate('local-signup', {
-    successRedirect : '/index', 
+    successRedirect : '/', 
     failureRedirect : '/error'
 }));
 
@@ -204,7 +199,7 @@ app.get('/deletecourse', isLoggedIn, userController.grantAccess('readAny', 'cour
 
 app.post('/profdeletecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.deleteCourse);
 
-
+app.get('/myroster', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.displayRoster);
 
 
 //Function to check if the user is still logged in

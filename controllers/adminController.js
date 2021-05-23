@@ -6,14 +6,8 @@ const User = require('../models/User');
 //Display the instructor's schedule in the manage course page
 exports.listCourses = function(req, res, next) {
   const courseIDs = req.user.courseid;
+
   Course.find().where('_id').in(courseIDs).exec((err, courses) => {
-    console.log(courses);
-    console.log("^^^")
-    const students = courses.roster;
-    console.log(students);
-    console.log("Stud");
-    console.log("C index");
-    console.log(courses.roster);
     res.render('managecourse', {
       user: req.user,
       Courses: courses
@@ -21,17 +15,33 @@ exports.listCourses = function(req, res, next) {
   })
 };
 
-exports.listCoursesDelete = function(req, res, next) {
-    const courseIDs = req.user.courseid;
-    Course.find().where('_id').in(courseIDs).exec((err, courses) => {
-      res.render('deletecourse', {
-        user: req.user,
-        Courses: courses
-      });
-    })
-  };
+exports.listCoursesDelete = function(req, res) {
+  const courseIDs = req.user.courseid;
+  Course.find().where('_id').in(courseIDs).exec((err, courses) => {
+    res.render('deletecourse', {
+      user: req.user,
+      Courses: courses
+    });
+  })
+};
 
-  //add logic to search database before updating
+exports.displayRoster = async function(req, res){
+  const courseID = req.body.courseUniqueID;
+  console.log("ccddd: " + courseID);
+
+  const course = await Course.findOne( { courseUniqueID: courseID } );
+  console.log(course);
+  // if(course)
+  //   res.render('profile', {
+  //     user: req.user,
+  //     Course: course
+  //   })
+  // else
+  //   res.send("error");
+}
+
+
+//add logic to search database before updating
 exports.createCourse = async function(req, res){
   const courseNum = req.body.courseNumber;
   const courseSection = req.body.courseSection;

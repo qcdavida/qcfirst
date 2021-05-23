@@ -23,13 +23,25 @@ $(document).ready(function() {
         });
     })
 
-    $('#profrostertable').click(function () {
-        if($("#collapseme").hasClass("out")) {
-            $("#collapseme").addClass("in");
-            $("#collapseme").removeClass("out");
-        } else {
-            $("#collapseme").addClass("out");
-            $("#collapseme").removeClass("in");
+    $('#profrostertable').on('click', '.viewrosterbtn', function(){
+        let tr = $(this).closest('tr');
+        let courseID = tr.find(".courseIdInfo").text();
+        
+        var myData = {
+            courseUniqueID: courseID
         }
-    });
+
+        console.log("My data");
+        console.log(myData);
+        $.ajax({
+            type : "GET",
+            contentType : "application/json",
+            url : "/myroster",
+            data : JSON.stringify(myData),
+            // datatype: 'json',
+            success : function() {
+                return res.render('/profile');
+            }
+        });
+    })
 })

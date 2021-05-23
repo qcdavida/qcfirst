@@ -1,10 +1,13 @@
 extends instructorlayout 
 
+block title
+  title Create Course
+
 block append scripts
-  script(src='/Javascript/preventDuplicate.js')
+ script(src='/Javascript/preventDuplicate.js')
 
 block append styles
-    link(rel='stylesheet' type='text/css' href='/CSS/createcoursestyles.css')
+ link(rel='stylesheet' type='text/css' href='/CSS/createcoursestyles.css')
 
 block content
  #create-course-container.container-fluid
@@ -62,9 +65,9 @@ block content
         |                            
         input#class-size-form.form-control(type='text' name='courseCapacity')
        .md-form
-        span#day-selection Days: 
+        span#day-selection Pick two different days: 
         select.firstDayOption.mdb-select(name='firstDay')
-         option(value="" disabled) Choose Day
+         option(value="" disabled) Days
          |
          option(value='Monday', name='firstMonday') Monday
          |                            
@@ -118,8 +121,7 @@ block content
     // end of form div
    .col-md-6
     .img-container
-    img(src='/Images/professor4.jpg', alt='classroom', width='100%')
-    // footer goes here
+    img(src='/Images/professor4.jpg' alt='classroom' width='100%')
   hr
   |          
   footer
@@ -135,4 +137,3 @@ block content
      |  
      |                   
      a.text-dark(href='#') Privacy Policy
-    // End of container-fluid main content div
