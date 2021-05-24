@@ -54,8 +54,15 @@ exports.saveCourseToUser = async function(req, res){
   let courseFull = course.isCourseFull;
   let courseNumber = course.courseNumber;
 
-  const queryUser = await User.findOne( { email: req.user.email } );
+  // const queryUser = await User.findOne( { email: req.user.email } );
   // let isUserEnrolledInSpecificCourse = (queryUser.courseid.indexOf(course._id) > -1);
+
+  let courses = await Course.find().where('_id').in(req.user.courseid);
+  console.log(courses);
+  console.log(course);
+  console.log("The para");
+  let timeConflict = checkForTimeConflicts(courses, course);
+  console.log("TC top " + timeConflict);
 
   let promise = checkIfEnrolledInSubject(req.user.courseid, courseNumber);
 
@@ -155,4 +162,39 @@ async function checkIfEnrolledInSubject(courseids, courseNum){
   });
 
   return inCourseSubject;
+}
+
+function checkForTimeConflicts(userCourses, courseToAdd){
+  let scheduleConflict = false; //this variable is what we are returning 
+  let dayOneConflict = false;
+  let dayTwoConflict = false;
+
+  for(let i = 0; i < userCourses.length; i++){
+    console.log("ello")
+    console.log("index: " + i);
+    console.log("Day 1: " + userCourses[i].classDays.dayOne + " and Day 2: " + userCourses[i].classDays.dayTwo)
+    console.log("Course to add: D1 " + courseToAdd.classDays.dayOne + " " + courseToAdd.classDays.dayTwo)
+
+    if( (userCourses[i].classDays.dayOne == courseToAdd.classDays.dayOne) ||
+        (userCourses[i].classDays.dayOne == courseToAdd.classDays.dayTwo)){
+        console.log("conflict 1")
+        dayOneConflict  = true;
+        scheduleConflict = true;
+        return scheduleConflict;
+    }
+    else if( (userCourses[i].classDays.dayTwo == courseToAdd.classDays.dayOne) ||
+             (userCourses[i].classDays.dayTwo == courseToAdd.classDays.dayTwo) ){
+      console.log("conflicts baby");
+      dayTwoConflict = true;
+      scheduleConflict = true;
+      return scheduleConflict;
+    }
+    else{
+      console.log("no conflicts :)");
+      return scheduleConflict;
+    }
+  }
+  console.log("TC var: " + scheduleConflict);
+  console.log("D1 var: " + dayOneConflict);
+  console.log("D2 var: " + dayTwoConflict);
 }
