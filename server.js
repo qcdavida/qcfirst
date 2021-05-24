@@ -13,7 +13,7 @@ const methodOverride = require('method-override');
 const User = require('./models/User');
 const courseController = require('./controllers/courseController');
 const userController = require('./controllers/userController');
-const adminController = require('./controllers/adminController');
+const instructorController = require('./controllers/instructorController');
 
 const InitiateMongoServer = require("./config/db");
 InitiateMongoServer();
@@ -24,7 +24,6 @@ const popDBcommand = require('./config/populateDB.js');
 
 //===============EXPRESS================
 
-// app.set('views', path.join(__dirname, 'views')); 
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname + '/public')));
 app.use(express.urlencoded({ extended: true }));
@@ -38,6 +37,7 @@ app.use(morgan('dev'));
 app.set('view engine', 'pug');
 
 //===============PASSPORT=================
+
 passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
@@ -168,7 +168,7 @@ app.use('/addcourse', isLoggedIn, courseController.addPageCourselist);
 app.use('/dropcourse', isLoggedIn, courseController.dropPageCourselist);
 app.use('/searchform', isLoggedIn, courseController.searchPageList);
 app.post('/savecourse', isLoggedIn, courseController.saveCourseToUser);
-app.post('/deletecourse', isLoggedIn, courseController.deleteCourseFromUser);
+app.post('/removecourse', isLoggedIn, courseController.deleteCourseFromUser);
 
 app.get('/logout', function(req, res) {
     req.logout();
@@ -176,7 +176,7 @@ app.get('/logout', function(req, res) {
 });
 
 
-//Admin routes
+//===============INSTRUCTOR ROUTES=================
 
 app.get('/instructorhome', isLoggedIn, userController.grantAccess('readAny', 'course'), function(req, res) {
     res.render('instructorhome', {
@@ -184,8 +184,7 @@ app.get('/instructorhome', isLoggedIn, userController.grantAccess('readAny', 'co
     });
 });
 
-app.use('/managecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.listCourses);
-app.use('/roster', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.viewRoster);
+app.use('/managecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.listCourses);
 
 app.get('/createcourse', isLoggedIn, userController.grantAccess('createAny', 'course'), function(req, res) {
     res.render('createcourse', {
@@ -193,13 +192,13 @@ app.get('/createcourse', isLoggedIn, userController.grantAccess('createAny', 'co
     });
 });
 
-app.post('/createcourse', isLoggedIn, userController.grantAccess('createAny', 'course'), adminController.createCourse);
+app.post('/createcourse', isLoggedIn, userController.grantAccess('createAny', 'course'), instructorController.createCourse);
 
-app.get('/deletecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.listCoursesDelete);
+app.get('/deletecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.listCoursesDelete);
 
-app.post('/profdeletecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.deleteCourse);
+app.post('/profdeletecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.deleteCourse);
 
-app.get('/myroster', isLoggedIn, userController.grantAccess('readAny', 'course'), adminController.displayRoster);
+app.get('/myroster', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.displayRoster);
 
 
 //Function to check if the user is still logged in

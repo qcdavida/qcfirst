@@ -38,12 +38,13 @@ block content
         option(value='English', name='englishDept') English 
         |                            
         option(value='Arts', name='artsDept') Arts               
-        |                        
-       label(for='input') Course Number
-       |                         
-       input#input.form-control(type='text', placeholder='courseid', name='courseIdForm')
-       |
-       button#search-btn.btn.btn-primary(type='submit') Search course
+        |   
+       .text-center                      
+        label(for='input') Enter the course number:
+        |                         
+        input#input.form-control(type='text', placeholder='ex: 355', name='courseIdForm')
+        |
+        button#search-btn.btn.btn-primary(type='submit') Search course
       |
    .col-md-6
     .img-container
@@ -57,20 +58,35 @@ block content
       th Course
       |
       th Course Name
-      |                        
+      |     
+      th Instructor
+      |            
+      th Semester 
+      |            
       th Days
       |                      
       th Time
     tbody
      each course in Courses
       tr
-       td.courseNumInfo= (course.get("courseNumber") + '-' + course.get("courseSection"))
+       td.courseNumInfo= course.get("courseUniqueID")
        |                    
        td.courseNameInfo= course.get("courseName")
-       |                      
-       td 
        |
-       td 
+       td.courseProfInfo= course.get("instructor")
+       |
+       td.courseSemesterInfo= course.get("semester")
+       |                      
+       td= course.get("classDays.dayOne")
+        span /
+        |
+        span= course.get("classDays.dayTwo")
+      
+       |
+       td= course.get("startTime")
+        span -
+        |
+        span= course.get("endTime")
        |
   hr
   |          

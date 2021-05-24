@@ -4,7 +4,7 @@ block title
  title Drop a course
 
 block append scripts
- script(src='/Javascript/searchCourse.js')
+ script(src='/Javascript/dropClass.js')
   
 block append styles
  link(rel='stylesheet' type='text/css' href='/CSS/dropcoursestyles.css')
@@ -22,7 +22,9 @@ block content
         th Course
         |   
         th Course Name
-        |                        
+        |  
+        th Semester 
+        |                      
         th Days
         |                      
         th Time
@@ -35,13 +37,22 @@ block content
          td.courseInfo= course.get("courseUniqueID")
          |                   
          td.courseNameInfo= course.get("courseName")
-         |                                          
-         td
-         | 
-         td
-         |                
+         |   
+         td= course.get("semester")
+         |                                       
+         td= course.get("classDays.dayOne")
+          span /
+          |
+          span= course.get("classDays.dayTwo")
+          |
+         td= course.get("startTime")
+          span -
+          |
+          span= course.get("endTime")
+          |               
          td
           button.deletebtn.btn.btn-danger(type='submit') Drop
+          | 
   hr
   |          
   footer

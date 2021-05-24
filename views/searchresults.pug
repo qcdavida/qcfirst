@@ -69,10 +69,16 @@ block content
         |                      
         td.courseProfInfo= course.get("instructor")
         |                      
-        td 
-        |                      
-        td 
-        |  
+        td= course.get("classDays.dayOne")
+         span /
+         |
+         span= course.get("classDays.dayTwo")
+         |
+        td= course.get("startTime")
+         span -
+         |
+         span= course.get("endTime")
+         |
         if(course.get("isCourseFull") == true)                  
          td.coursestatusinfo closed
          |
