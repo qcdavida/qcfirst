@@ -22,14 +22,7 @@ cyan - #d2fdff
 #profrostertable {
   margin-top: 3%;
   border: 3px solid black;
-  background: oldlace
-    linear-gradient(
-      to bottom,
-      #fbe8a6,
-      #fbe8a6 3rem,
-      transparent 1rem,
-      transparent 100%
-    );
+  background: oldlace;
 }
 
 /*Disabling Functionality*/ 
