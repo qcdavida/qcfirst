@@ -13,7 +13,7 @@
 
 ## Live Link
 Please Click the Live link Below to Be Transported to QCFirst2.0.<br>
-#### CLICK [here](http://localhost:3000/)
+#### CLICK [here](https://qcfirst.reydavid86.repl.co)
 
 ## Contributors
 <u>**Team Member 1**</u> David Acuqui: Played a major role in the overall design, and re-design of QCFirst into QCFIRST 2.0. David not only served in the capacity as a project manager, but as well as the technical back-end lead. His technical subject matter expertise allowed him to delegate tasks, and push out delieverables in a timely manner. He was responsible for the original design of QCFirst, the re-design of QCFirst, the implementation of the *web application stack* that was used in building QCFirst. David handled much of the database integration, as well as building the skeleteon of QCFirst and served in the capacity as senior-developer. David is continuing to work, finalize the authentication process that was begun but unable to be completed by Jonathan. In addition he provided invaluable subject matter expertise in the layout, creation, deployement and critical analysis of the QCFirst. Contributions include: majority of the front-end, back-end, and database.<br>
