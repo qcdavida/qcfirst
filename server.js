@@ -139,8 +139,8 @@ app.post('/login', passport.authenticate('local-login',
             else{
                 res.redirect('/');
             }
-            }
         }
+    }
 );
 
 app.get('/signup', function(req, res){
