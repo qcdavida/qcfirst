@@ -149,8 +149,8 @@ exports.deleteCourse = async function(req, res){
   try{
     console.log(courseID);
     const course = await Course.findOne( { courseUniqueID: courseID } );
-    console.log(course);
     course.remove();
+    res.send("deleted");
   }
   catch(e){
     console.log(e)

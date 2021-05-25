@@ -14,7 +14,8 @@ $(document).ready(function() {
             contentType : "application/json",
             url : "/profdeletecourse",
             data : JSON.stringify(myData),
-            success : function() {
+            success : function(message) {
+                if(message === "deleted")
                 rowID.remove();
             }
         });
