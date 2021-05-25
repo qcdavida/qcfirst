@@ -46,7 +46,7 @@ The Website is now fully responsive on all devices due to utilization of the Boo
 
 ### QCFirst 2.0 Welcome Page
 ![Welcome-Page](https://i.imgur.com/uWS6WUD.png)
-https://i.imgur.com/JQB3c4g.png
+(https://i.imgur.com/JQB3c4g.png)
 
 ### QCFirst 2.0 Registration Page w/ Client Side Authentication
 ![Registration-Page](https://i.imgur.com/tc8mrqW.png)
