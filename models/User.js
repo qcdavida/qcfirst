@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const course = require('../models/Course').schema;
 const bcrypt = require('bcrypt-nodejs');
 
 const userSchema = new Schema({
@@ -9,11 +8,12 @@ const userSchema = new Schema({
         required: "Please supply an email",
         lowercase: true,
         trim: true,
-        unique: true
+        unique: true,
+        require: true
     },
     password: {
         type: String,
-        trim: true
+        require: true
     },
     firstname: {
         type: String,

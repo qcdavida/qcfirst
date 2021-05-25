@@ -1,0 +1,43 @@
+extends adminlayout
+
+block title
+ title Admin Users
+
+block append styles
+ link(rel='stylesheet', type='text/css', href='/CSS/admincoursesstyles.css')
+
+block content
+ if(Users)
+  .table-responsive
+   table#admin-users-table.table.table-hover
+    thead
+     caption All users in database:
+     |
+     tr
+      th Email
+      |
+      th First Name
+      |
+      th Last Name
+      |
+      th Role
+      |  
+      th CourseIDs
+      |       
+      th Password
+      |  
+    tbody
+     each user in Users
+      tr
+       td= user.get("email")
+       |   
+       td= user.get("firstname")
+       |   
+       td= user.get("lastname")
+       |
+       td= user.get("role")
+       |   
+       td= user.get("courseid")
+       |      
+       td= user.get("password")
+       |   

@@ -1,4 +1,3 @@
-const User = require('../models/User');
 const { roles } = require('../roles');
  
 exports.grantAccess = function(action, resource) {

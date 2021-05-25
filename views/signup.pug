@@ -3,13 +3,16 @@ extends layout
 block title
  title Signup
 
+block append scripts
+ script(src='/Javascript/instructorCourse.js')
+
 block append styles
-  link(rel='stylesheet' type='text/css' href='/CSS/signupstyles.css')
+ link(rel='stylesheet' type='text/css' href='/CSS/signupstyles.css')
 
 block content
   block content
     .signup-form.container-fluid
-      form#form.needs-validation(action='/signup', method='post', novalidate='')
+      form#form.needs-validation(action='/signup', method='post' oninput='up2.setCustomValidity(up2.value != up.value ? "Passwords do not match." : ))
         h2.border-bottom.border-primary.text-center
           | QCFIRST REGISTRATION
         .form-group
@@ -22,7 +25,6 @@ block content
               input#validationCustom01.form-control(type='text', name='firstname', placeholder='Enter Your First Name', required='')
               .valid-feedback  Looks Good!
               .invalid-feedback  Needs to Be Filled
-              //
                 Failed
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
@@ -32,44 +34,24 @@ block content
               input#validationCustom02.form-control(type='text', name='lastname', placeholder='Enter Your Last Name', required='')
               .valid-feedback  Looks Good!
               .invalid-feedback  Needs to Be Filled
-              //
-                Failed
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                <small>Error Message</small>
           .form-group.col-sm-12.col-md-12.col-lg-12
             label.form-label(for='validationCustom05') QC Email
             input#validationCustom05.form-control(type='email', name='email', placeholder='@qcfirst.edu', required='')
             .valid-feedback  Looks Good!
             .invalid-feedback  Needs to Be Filled
-            //
-              F
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i>
-              <small>Error Message</small>
           .form-group.col-sm-12.col-md-12.col-lg-12
             label.form-label(for='validationCustom06') Password
             input#validationCustom06.form-control(type='password', name='password', placeholder='Password', required='')
             .valid-feedback  Looks Good!
             .invalid-feedback  Needs to Be Filled
-            //
-              F
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i>
-              <small>Error Message</small>
           .form-group.col-sm-12.col-md-12.col-lg-12
             label.form-label(for='validationCustom07') Confirm Password
             input#validationCustom07.form-control(type='password', placeholder='Confirm Password', required='')
             .valid-feedback  Looks Good!
             .invalid-feedback  Needs to Be Filled
-            //
-              F
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i>
-              <small>Error Message</small>
         .form-group
           button#form-submit.btn.btn-success.btn-lg.btn-block(type='submit', value='Register')
             | Submit
       .text-lg-center.sign-up-text
         | Already have an account?
-        a(href='#local-sign-in') Sign in
+        a(href='/login') Sign in

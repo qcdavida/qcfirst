@@ -16,6 +16,8 @@ ac.grant("admin")
  .extend("student")
  .extend("instructor")
  .updateAny("course")
+ .deleteAny("course")
+ .deleteAny("user")
  
 return ac;
 })();

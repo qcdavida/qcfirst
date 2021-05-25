@@ -1,0 +1,109 @@
+extends adminlayout
+
+block title
+ title Admin Courses
+
+block append styles
+ link(rel='stylesheet', type='text/css', href='/CSS/admincoursesstyles.css')
+
+block content
+ if(Courses)
+  .table-responsive
+   table#admin-table.table.table-hover
+    thead
+     caption Course Information continued:
+     |
+     tr
+      th Course Number
+      |
+      th Course Section
+      |
+      th Unique ID
+      |
+      th Course Name
+      |    
+      th Dept.
+      |     
+      th Instructor
+      |  
+      th Description
+      |            
+      th Semester 
+      |
+    tbody
+     each course in Courses
+      tr
+       td.courseNumInfo= course.get("courseNumber")
+       |   
+       td= course.get("courseSection")
+       |          
+       td= course.get("courseUniqueID")
+       |       
+       td= course.get("courseName")
+       |
+       td= course.get("dept")
+       |
+       td= course.get("instructor")
+       |
+       td= course.get("description")
+       |
+       td= course.get("semester")
+       |            
+  .table-responsive
+   table#admin-additional-table.table.table-hover
+    thead
+     caption Database fields and information
+     |
+     tr
+      th Unique ID
+      |
+      th Current Capacity
+      |
+      th Max Capacity
+      |
+      th Roster
+      |
+      th Class Days
+      |    
+      th Start Time
+      |     
+      th End Time
+      |  
+      th Course Start Date
+      |            
+      th End Date
+      |         
+      th Enrollment Deadline
+      |     
+      th Is Course Full
+      |    
+    tbody
+     each course in Courses
+      tr
+       td= course.get("courseUniqueID")
+       |                
+       td= course.get("currentCapacity")
+       |
+       td= course.get("maxCapacity")
+       | 
+       td= course.get("roster")
+       |           
+       td= course.get("classDays.dayOne")
+        span /
+        |
+        span= course.get("classDays.dayTwo")
+        |
+       td= course.get("startTime")
+       |
+       td= course.get("endTime")
+       |
+       td= course.get("courseStartDate")
+       |           
+       td= course.get("courseEndDate")
+       |
+       td= course.get("enrollmentDeadline")
+       |
+       td= course.get("isCourseFull")
+       |
+ else
+  p No Courses to display

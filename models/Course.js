@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-// const userSchema = require('../models/User').schema;
 
 const courseSchema = new Schema({
     courseNumber: String,
@@ -18,8 +17,8 @@ const courseSchema = new Schema({
     startTime: String,
     endTime: String,
     courseStartDate: { type: Date, default: '09-02-2021' }, //default date for the start of the semester
-    courseEndDate: Date,
-    enrollmentDeadline: Date,
+    courseEndDate: { type: Date, default: '12-02-2021' },
+    enrollmentDeadline: { type: Date, default: '08-29-2021' },
     isCourseFull: Boolean
 });
 

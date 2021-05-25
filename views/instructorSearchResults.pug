@@ -1,0 +1,134 @@
+extends instructorlayout
+
+block title
+ title Search Results
+
+block append styles
+ link(rel='stylesheet' type='text/css' href='/CSS/profsearchstyles.css')
+
+block content
+ .container-fluid.myContainer
+  if(Courses)
+   .row
+    .col-md-4
+     .card
+      img.card-img-top(src='/Images/student3.jpg', alt='studentroom')
+      |                   
+      .card-body.text-center
+       h5.card-title Course description
+       |                       
+       p.card-text= Courses[0].get("description")
+       |             
+    .col-md-4
+     .card
+      img.card-img-top(src='/Images/student4.jpg', alt='students')
+      |                   
+      .card-body.text-center
+       h5.card-title Viewing all courses
+       |                       
+       p.card-text Here are the courses in QCFirst
+       |             
+    .col-md-4
+     .card
+      img.card-img-top(src='/Images/college6.jpg', alt='collegecampus')
+      |                   
+      .card-body.text-center
+       h5.card-title Course dates
+       |                       
+       p.card-text= Courses[0].get("courseStartDate")
+        span -
+         span= Courses[0].get("courseEndDate")
+        |          
+   .table-responsive
+    table#profsearchresultstable.table.table-hover(class='.table-sm')
+     thead
+      tr
+       th Course
+       |       
+       th Course Name
+       |                      
+       th Instructor
+       |                      
+       th Days
+       |                      
+       th Times
+       |                  
+       th Status
+       |                                  
+     tbody
+      each course in Courses
+       tr 
+        td.courseInfo= course.get("courseUniqueID")
+        |                    
+        td.courseNameInfo= course.get("courseName")
+        |                      
+        td.courseProfInfo= course.get("instructor")
+        |                      
+        td= course.get("classDays.dayOne")
+         span /
+         |
+         span= course.get("classDays.dayTwo")
+         |
+        td= course.get("startTime")
+         span -
+         |
+         span= course.get("endTime")
+         |
+        if(course.get("isCourseFull") == true)                  
+         td.coursestatusinfo closed
+         |
+        else  
+         td.coursestatusinfo open
+         | 
+        |
+  else
+   .row
+    .col-md-4
+     h3 No Courses Found
+     p Try searching from the following course codes:
+    .col-md-4
+     h4 Computer Science
+     ul
+      li 101 - Intro to CS
+      li 102 - Advanced CSCS
+      li 355 - Web Tech
+      li 370 - Software Eng.
+    .col-md-4
+     h4 Math
+     ul
+      li 101 - Intro to Math
+      li 106 - Calculus 1
+      li 107 - Calculus 2
+      li 370 - Linear Algebra
+   .row
+    .col-md-6
+     h4 English
+     ul
+      li 101 - Eassy Writing
+      li 106 - English 1
+      li 107 - English 2
+      li 240 - English 3
+    .col-md-6
+     h4 Arts
+     ul
+      li 101 - Intro to Art
+      li 107 - Fine Arts
+      li 250 - Graphic Design
+      li 300 - Advanced Art
+    // footer goes here
+  hr
+  |
+  footer
+   .row
+    .col-md-6
+     p Copyright &copy; 2021 QC First
+     |               
+    .col-md-6.text-md-right
+     a.text-dark(href='#') Terms of Use 
+     |  
+     |
+     span.text-muted.mx-2 |
+     |  
+     |                   
+     a.text-dark(href='#') Privacy Policy
+    // End of container-fluid main content div

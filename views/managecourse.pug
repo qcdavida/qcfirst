@@ -4,7 +4,7 @@ block title
  title Manage Courses
 
 block append scripts
- script(src='/Javascript/instructorCourse.js')
+ script(src='/Javascript/viewRoster.js')
 
 block append styles
  link(rel='stylesheet' type='text/css' href='/CSS/managecoursesstyles.css')
@@ -30,7 +30,7 @@ block content
       th Num. of Students
       |                      
       th Roster
-    tbody
+    tbody#myTbody
      each course in Courses
       tr
        td.courseIdInfo= course.get("courseUniqueID")
@@ -39,16 +39,22 @@ block content
        |                      
        td.courseSemInfo= course.get("semester")
        |
-       td 
-       |                      
-       td 
-       |                   
+       td= course.get("classDays.dayOne")
+        span /
+        |
+        span= course.get("classDays.dayTwo")
+        |                    
+       td= course.get("startTime")
+        span -
+        |
+        span= course.get("endTime")
+        |                   
        td.courseRosterSizeInfo= course.get("currentCapacity")
         span /
         |
         span= course.get("maxCapacity")
        |                      
-       td
+       td.myCourse
         button.viewrosterbtn.btn.btn-info(type='submit') View
   hr
   |          

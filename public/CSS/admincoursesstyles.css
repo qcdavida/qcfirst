@@ -1,0 +1,27 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+#admin-table {
+  margin-top: 10%;
+}
+
+#admin-additional-table{
+    margin-top: 3%;
+}
+
+#admin-users-table{
+    margin-top: 10%;
+}

@@ -6,7 +6,7 @@ doctype html
   Name: David Acuqui
   Date: 04.22.2021
   Section: CS 355-54
-  *ADD CONTENT*
+
   Photos taken from https://unsplash.com/ (search keywords: college, professor, student)
 html(lang='en')
   head
@@ -33,10 +33,12 @@ html(lang='en')
           #navbarCollapse.collapse.navbar-collapse
             .navbar-nav.navLinks
               a.nav-item.nav-link.active(href='/') Home
-              a.nav-item.nav-link(href='/enrollment') Enrollment
+              a.nav-item.nav-link(href='/enrollment') Enrollment Center
+              a.nav-item.nav-link(href='/addcourse') My Courses
             form.form-inline.ml-auto.navSearchLink(action='/searchbar' method='POST')
               input.form-control.mr-sm-2(type='text' placeholder='Search courses(Ex: 355)')
-              button.btn.btn-outline-light(type='submit') Quick Search
+              a(href='addcourse')
+               button.btn.btn-outline-light(type='button') Search
             .navbar-nav.ml-auto.navAcctLink
                 a.nav-item.nav-link(href='/logout') Logout
     else

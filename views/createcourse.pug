@@ -1,7 +1,7 @@
 extends instructorlayout 
 
 block title
-  title Create Course
+ title Create Course
 
 block append scripts
  script(src='/Javascript/preventDuplicate.js')
@@ -100,21 +100,21 @@ block content
         select.mdb-select(name='timeSelection')
          option(value='', disabled='') Choose time
          |                            
-         option(value='09:00-10:15', selected='' name='9timeslot') 9:00am-10:15am
+         option(value='09:00 am-10:15 am', selected='' name='9timeslot') 9:00am-10:15am
          |                            
-         option(value='10:30-11:45' name='10timeslot') 10:30am-11:45am
+         option(value='10:30 am-11:45 am' name='10timeslot') 10:30am-11:45am
          |                            
-         option(value='12:00-1:15' name='12timeslot') 12:00pm-1:15pm
+         option(value='12:00 pm-1:15 pm' name='12timeslot') 12:00pm-1:15pm
          |                            
-         option(value='01:30-02:45' name='1timeslot') 1:30pm-2:45pm
+         option(value='01:30 pm-02:45 pm' name='1timeslot') 1:30pm-2:45pm
          |                            
-         option(value='03:00-04:15' name='3timeslot') 3:00pm-4:15pm
+         option(value='03:00 pm-04:15 pm' name='3timeslot') 3:00pm-4:15pm
          |                            
-         option(value='04:30-5:45' name='4timeslot') 4:30pm-5:45pm
+         option(value='04:30 pm-5:45 pm' name='4timeslot') 4:30pm-5:45pm
          |                            
-         option(value='06:00-07:15' name='6timeslot') 6:00pm-7:15pm
+         option(value='06:00 pm-07:15 pm' name='6timeslot') 6:00pm-7:15pm
          |                            
-         option(value='07:30-08:45' name='7timeslot') 7:30pm-8:45pm
+         option(value='07:30 pm-08:45 pm' name='7timeslot') 7:30pm-8:45pm
          |                         
        button#course-btn.btn.btn-outline-info.btn-rounded.btn-block.my-4.waves-effect.z-depth-0(type='submit') Create course
         |                         

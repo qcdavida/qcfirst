@@ -1,12 +1,15 @@
-// const mongoose = require('mongoose');
-// const { addCoursesForUsers } = require('../config/populateDB');
 const Course = require('../models/Course');
 const User = require('../models/User');
+const Moment = require('moment');
+const MomentRange = require('moment-range');
+const moment = MomentRange.extendMoment(Moment);
 
 //Display the user's schedule in the add course page
-exports.addPageCourselist = function(req, res, next) {
+exports.addPageCourselist = function(req, res) {
   const courseIDs = req.user.courseid;
   Course.find().where('_id').in(courseIDs).exec((err, courses) => {
+    if(err)
+      return res.status(404).json({message: 'Something went wrong, please try again.'});
     res.render('addcourse', {
       user: req.user,
       Courses: courses
@@ -18,6 +21,9 @@ exports.addPageCourselist = function(req, res, next) {
 exports.dropPageCourselist = function(req, res) {
   const courseID = req.user.courseid;
   Course.find().where('_id').in(courseID).exec((err, courses) => {
+    if(err){
+      return res.status(404).json({message: 'Something went wrong, please try again.'});
+    }
     res.render('dropcourse', {
       user: req.user,
       Courses: courses
@@ -26,13 +32,15 @@ exports.dropPageCourselist = function(req, res) {
 };
 
 //Search the database for the course and then display the results
-exports.searchPageList = function(req, res, next) {
+exports.searchPageList = function(req, res) {
   const courseID = req.body.courseIdForm;
   const courseDept = req.body.deptSelection;
   const courseSemester = req.body.termselection;
 
   Course.find({ courseNumber: courseID }).and([{ dept: courseDept }, { semester: courseSemester }]).exec((err, courses) => {
     //if no courses were found, only pass the user
+    if(err) 
+      return res.status(404).json({message: 'Something went wrong, please try again.'});
     if(courses.length === 0){
       res.render('searchresults', {
         user: req.user
@@ -54,59 +62,57 @@ exports.saveCourseToUser = async function(req, res){
   let courseFull = course.isCourseFull;
   let courseNumber = course.courseNumber;
 
-  // const queryUser = await User.findOne( { email: req.user.email } );
-  // let isUserEnrolledInSpecificCourse = (queryUser.courseid.indexOf(course._id) > -1);
-
   let courses = await Course.find().where('_id').in(req.user.courseid);
-  console.log(courses);
-  console.log(course);
-  console.log("The para");
   let timeConflict = checkForTimeConflicts(courses, course);
-  console.log("TC top " + timeConflict);
 
-  let promise = checkIfEnrolledInSubject(req.user.courseid, courseNumber);
+  if(timeConflict){
+    res.send("timeConflict")
+  }
+  else{
+    let promise = checkIfEnrolledInSubject(req.user.courseid, courseNumber);
 
-  promise.then(async (isUserEnrolledInSubject) => {
-    try{
-      if(!courseFull && !isUserEnrolledInSubject){
-        const user = await User.findOneAndUpdate( { email: req.user.email },
-          { $push:  { courseid: course._id } }
-        );
+    promise.then(async (isUserEnrolledInSubject) => {
+      try{
+        if(!courseFull && !isUserEnrolledInSubject){
+          const user = await User.findOneAndUpdate( { email: req.user.email },
+            { $push:  { courseid: course._id } }
+          );
 
-        //if adding the student makes the course reach maxCap then
-        //we set the isCourseFull field to true
-        if((course.currentCapacity + 1) === course.maxCapacity){
-          Course.findOneAndUpdate( { courseUniqueID: courseID },{ 
-            $inc: { currentCapacity: 1 },
-            $push: { roster: user._id },
-            $set: { isCourseFull: true }
-          }).exec( function (err){
-            if(err)
-              console.log(err);
-            else
-              res.send("success");
-            });
-          }//end of inner if
-          else{
+          //if adding the student makes the course reach maxCap then
+          //we set the isCourseFull field to true
+          if((course.currentCapacity + 1) === course.maxCapacity){
             Course.findOneAndUpdate( { courseUniqueID: courseID },{ 
               $inc: { currentCapacity: 1 },
               $push: { roster: user._id },
+              $set: { isCourseFull: true }
             }).exec( function (err){
               if(err)
                 console.log(err);
               else
                 res.send("success");
-            });
-          }//end of inner else
-      }//end of if block
-      else{
-        res.send("enrolledAlready");
+              });
+            }//end of inner if
+            else{
+              Course.findOneAndUpdate( { courseUniqueID: courseID },{ 
+                $inc: { currentCapacity: 1 },
+                $push: { roster: user._id },
+              }).exec( function (err){
+                if(err)
+                  console.log(err);
+                else
+                  res.send("success");
+              });
+            }//end of inner else
+        }//end of if block
+        else{
+          res.send("enrolledAlready");
+        }
+      }//end of try block
+      catch(err){
+        console.log(err);
       }
-    }//end of try block
-    catch(err){
-      console.log(err);
-    }
-  })//end of promise block
+    })//end of promise block
+  }//end of else
 }//end of savecoursetouser
 
 exports.deleteCourseFromUser = async function(req, res){
@@ -164,37 +170,96 @@ async function checkIfEnrolledInSubject(courseids, courseNum){
   return inCourseSubject;
 }
 
+//this function checks for any time conflicts between the courses the user
+//is already enrolled in and the course they are trying to add
 function checkForTimeConflicts(userCourses, courseToAdd){
-  let scheduleConflict = false; //this variable is what we are returning 
-  let dayOneConflict = false;
-  let dayTwoConflict = false;
+  let scheduleConflict = false;
 
   for(let i = 0; i < userCourses.length; i++){
-    console.log("ello")
-    console.log("index: " + i);
-    console.log("Day 1: " + userCourses[i].classDays.dayOne + " and Day 2: " + userCourses[i].classDays.dayTwo)
-    console.log("Course to add: D1 " + courseToAdd.classDays.dayOne + " " + courseToAdd.classDays.dayTwo)
-
-    if( (userCourses[i].classDays.dayOne == courseToAdd.classDays.dayOne) ||
-        (userCourses[i].classDays.dayOne == courseToAdd.classDays.dayTwo)){
-        console.log("conflict 1")
-        dayOneConflict  = true;
-        scheduleConflict = true;
-        return scheduleConflict;
-    }
-    else if( (userCourses[i].classDays.dayTwo == courseToAdd.classDays.dayOne) ||
-             (userCourses[i].classDays.dayTwo == courseToAdd.classDays.dayTwo) ){
-      console.log("conflicts baby");
-      dayTwoConflict = true;
-      scheduleConflict = true;
-      return scheduleConflict;
+    if(userCourses[i].semester != courseToAdd.semester){
+      console.log("Not equal");
     }
     else{
-      console.log("no conflicts :)");
-      return scheduleConflict;
+      //check if user course day one is equal to course to be added day one
+      //if it does then check if time conflicts
+      if(userCourses[i].classDays.dayOne == courseToAdd.classDays.dayOne){
+
+        let c1StartTime = "2021-5-24 " + userCourses[i].startTime.split(" ")[0];
+        let c1EndTime = "2021-5-24 " + userCourses[i].endTime.split(" ")[0];
+        let c2StartTime = "2021-5-24 " + courseToAdd.startTime.split(" ")[0];
+        let c2EndTime = "2021-5-24 " + courseToAdd.endTime.split(" ")[0];
+
+        scheduleConflict = helperTimeFunction(c1StartTime, c1EndTime, c2StartTime, c2EndTime);
+
+        if(scheduleConflict)
+          return scheduleConflict;
+      }
+      
+      //check if user course day one is equal to course to be added day two
+      if(userCourses[i].classDays.dayOne == courseToAdd.classDays.dayTwo){
+
+        let c1StartTime = "2021-5-24 " + userCourses[i].startTime.split(" ")[0];
+        let c1EndTime = "2021-5-24 " + userCourses[i].endTime.split(" ")[0];
+        let c2StartTime = "2021-5-24 " + courseToAdd.startTime.split(" ")[0];
+        let c2EndTime = "2021-5-24 " + courseToAdd.endTime.split(" ")[0];
+
+        scheduleConflict = helperTimeFunction(c1StartTime, c1EndTime, c2StartTime, c2EndTime);
+
+        if(scheduleConflict)
+          return scheduleConflict;
+      }
+      
+      //check if user course day two is equal to course to be added day one
+      if(userCourses[i].classDays.dayTwo == courseToAdd.classDays.dayOne){
+        
+        let c1StartTime = "2021-5-24 " + userCourses[i].startTime.split(" ")[0];
+        let c1EndTime = "2021-5-24 " + userCourses[i].endTime.split(" ")[0];
+        let c2StartTime = "2021-5-24 " + courseToAdd.startTime.split(" ")[0];
+        let c2EndTime = "2021-5-24 " + courseToAdd.endTime.split(" ")[0];
+
+        scheduleConflict = helperTimeFunction(c1StartTime, c1EndTime, c2StartTime, c2EndTime);
+
+        if(scheduleConflict)
+          return scheduleConflict;
+      }
+      
+      //check if user course day two is equal to course to be added day two
+      if(userCourses[i].classDays.dayTwo == courseToAdd.classDays.dayTwo){
+
+        let c1StartTime = "2021-5-24 " + userCourses[i].startTime.split(" ")[0];
+        let c1EndTime = "2021-5-24 " + userCourses[i].endTime.split(" ")[0];
+        let c2StartTime = "2021-5-24 " + courseToAdd.startTime.split(" ")[0];
+        let c2EndTime = "2021-5-24 " + courseToAdd.endTime.split(" ")[0];
+
+        scheduleConflict = helperTimeFunction(c1StartTime, c1EndTime, c2StartTime, c2EndTime);
+
+        if(scheduleConflict)
+          return scheduleConflict;
+      }
+    }//end of for loop
+  }
+}//end of function
+
+//this is to help the above function to make the code look cleaner 
+//this function checks if class times overlap.
+function helperTimeFunction(c1StartTime, c1EndTime, c2StartTime, c2EndTime){
+  let timeConflict = false;
+
+  var time1 = [moment(c1StartTime), moment(c1EndTime)];
+  var time2 = [moment(c2StartTime), moment(c2EndTime)];
+
+  var range = moment.range(time1);
+  var range2 = moment.range(time2);
+
+  if(range.overlaps(range2)) {
+    if((range2.contains(range, true) || range.contains(range2, true)) && !time1[0].isSame(time2[0])){
+      timeConflict = true;
+      return timeConflict;
+    }
+    else{
+      timeConflict = true;
+      return timeConflict = true;
     }
   }
-  console.log("TC var: " + scheduleConflict);
-  console.log("D1 var: " + dayOneConflict);
-  console.log("D2 var: " + dayTwoConflict);
+  return timeConflict;
 }

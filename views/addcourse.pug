@@ -3,11 +3,8 @@ extends layout
 block title
  title Search for courses
 
-block append scripts
-  script(src='/Javascript/searchCourse.js')
-
 block append styles
-  link(rel='stylesheet', type='text/css', href='/CSS/addcoursestyles.css')
+ link(rel='stylesheet', type='text/css', href='/CSS/addcoursestyles.css')
 
 block content
  .container-fluid
@@ -81,8 +78,7 @@ block content
         span /
         |
         span= course.get("classDays.dayTwo")
-      
-       |
+        |
        td= course.get("startTime")
         span -
         |

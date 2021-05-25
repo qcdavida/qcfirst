@@ -1,0 +1,42 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+.adminattentionjumbo {
+  margin-top: 5%;
+}
+
+.card-text {
+  font-family: "Lato", sans-serif;
+}
+
+#main-info {
+  margin-top: 10%;
+  margin-bottom: 3%;
+  padding-bottom: 3%;
+}
+
+#prof-main-div {
+  margin-top: 10%;
+}
+
+.card-info {
+  margin-top: 1%;
+}
+
+.card-img {
+  width: 300px;
+}
+

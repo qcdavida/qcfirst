@@ -11,9 +11,10 @@ const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
 
 const User = require('./models/User');
-const courseController = require('./controllers/courseController');
 const userController = require('./controllers/userController');
+const courseController = require('./controllers/courseController');
 const instructorController = require('./controllers/instructorController');
+const adminController = require('./controllers/adminController');
 
 const InitiateMongoServer = require("./config/db");
 InitiateMongoServer();
@@ -129,10 +130,10 @@ app.post('/login', passport.authenticate('local-login',
         if(!req.user)
             return res.status(404).json({message: 'Something went wrong, please try again.'});
         else {
-            if(req.user.role==='admin'){
-                res.redirect('/instructorhome');
+            if(req.user.role === 'admin'){
+                res.redirect('/adminhome');
             }
-            else if(req.user.role==='instructor'){
+            else if(req.user.role === 'instructor'){
                 res.redirect('/instructorhome');
             }
             else{
@@ -150,13 +151,6 @@ app.post('/signup', passport.authenticate('local-signup', {
     successRedirect : '/', 
     failureRedirect : '/error'
 }));
-
-//profile is just for testing, not used in the final website
-app.get('/profile', isLoggedIn, function(req, res) {
-    res.render('profile', {
-    user : req.user
-    });
-});
 
 app.get('/enrollment', isLoggedIn, function(req, res) {
     res.render('enrollment', {
@@ -198,8 +192,27 @@ app.get('/deletecourse', isLoggedIn, userController.grantAccess('readAny', 'cour
 
 app.post('/profdeletecourse', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.deleteCourse);
 
-app.get('/myroster', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.displayRoster);
+app.post('/myroster', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.displayRoster);
 
+app.get('/search', isLoggedIn, userController.grantAccess('readAny', 'course'), function(req, res){
+    res.render('search', {
+        user : req.user
+    });
+})
+
+app.use('/search', isLoggedIn, userController.grantAccess('readAny', 'course'), instructorController.searchCourses);
+
+
+//===============ADMIN ROUTES=================
+
+app.get('/adminhome', isLoggedIn, userController.grantAccess('updateAny', 'course'), function(req, res){
+    res.render('adminhome', {
+        user: req.user
+    });
+})
+
+app.get('/admincourses', isLoggedIn, userController.grantAccess('deleteAny', 'course'), adminController.listCourses);
+app.get('/adminusers', isLoggedIn, userController.grantAccess('deleteAny', 'course'), adminController.listUsers);
 
 //Function to check if the user is still logged in
 

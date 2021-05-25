@@ -1,0 +1,82 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:900italic);
+
+/* color schemes:
+Set being used across the site:
+Crimison: #800000
+light beige: #ecd5bb
+dark blueish: #54627b
+
+Other css colors
+light orange - #fbe8a6
+pastel orange - #f4976c
+dark blue - #303c6c
+cyan ish - #b4dfe5
+cyan - #d2fdff
+*/
+
+.myContainer{
+    padding-top: 10%;
+}
+
+.img-container {
+  margin-top: 19%;
+}
+
+#course-form {
+  margin-top: 5%;
+  padding-top: 4%;
+}
+
+.myForm {
+  color: #757575;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #31708e;
+  border-radius: 4px;
+  background-color: #ecd5bb;
+}
+
+input[type="text"]:focus {
+  background-color: #ecd5bb;
+}
+
+#termselection, #deptselection{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #31708e;
+  border-radius: 4px;
+  background-color: #ecd5bb;
+}
+
+#search-btn {
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+  border: 1px solid black;
+  border-color: #153983;
+  border-width: 3px;
+  background-color: #153983;
+  line-height: 1.5;
+  box-shadow: 10px 5px 0px #31708e;
+}
+
+#profsearchresultstable{
+  margin-top: 3%;
+  border: 3px solid black;
+  background: oldlace;
+}
+
+/*Disabling Functionality*/
+.disabled {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.8;
+}

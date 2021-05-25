@@ -1,0 +1,63 @@
+extends instructorlayout
+
+block title
+ title Search for courses
+
+block append styles
+ link(rel='stylesheet', type='text/css', href='/CSS/addcoursestyles.css')
+
+block content
+ .container-fluid
+  .row
+   #course-form.col-md-6
+    .card
+     h5.card-header.info-color.white-text.text-center.py-4
+      strong Fill out the form to search for QC First courses
+      |                   
+     .card-body.px-lg-5
+      form.md-form.myForm(action='/search', method='post')
+       .text-center
+        p Select the term:
+        |                         
+       select#termselection(name='termselection')
+        option(value='Fall 2021', name='nextTermOption') Fall 2021
+        |                            
+        option(value='Summer 2021', name='currentTermOption') Summer 2021
+        |
+       .text-center
+        p Select course department:
+        |                         
+       select#deptselection(name='deptSelection')
+        option(value='Computer Science', name='csDept') Computer Science
+        |                            
+        option(value='Math', name='mathDept') Math
+        |                            
+        option(value='English', name='englishDept') English 
+        |                            
+        option(value='Arts', name='artsDept') Arts               
+        |   
+       .text-center                      
+        label(for='input') Enter the course number:
+        |                         
+        input#input.form-control(type='text', placeholder='ex: 355', name='courseIdForm')
+        |
+        button#search-btn.btn.btn-primary(type='submit') Search course
+      |
+   .col-md-6
+    .img-container
+     img(src='/Images/professor2.jpg', alt='classroom', width='100%')
+  hr
+  |          
+  footer
+   .row
+    .col-md-6
+     p Copyright &copy; 2021 QC First
+     |                
+    .col-md-6.text-md-right
+     a.text-dark(href='#') Terms of Use
+     |  
+     |                   
+     span.text-muted.mx-2 |
+     |  
+     |                   
+     a.text-dark(href='#') Privacy Policy

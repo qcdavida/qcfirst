@@ -1,0 +1,23 @@
+extends adminlayout
+
+block title
+ title Admin
+
+block append styles
+ link(rel='stylesheet', type='text/css', href='/CSS/adminhomestyles.css')
+
+block content
+  .jumbotron.text-center
+   h4.card-title.h4.pb-2.adminattentionjumbo
+    strong QC First
+    |             
+    .view.overlay.my-4
+     img.img-fluid(src='/Images/campus.jpg' alt='collegecampus')
+     |                
+     a(href='#')
+      .mask.rgba-white-slight
+     |             
+    h5.indigo-text.h5.mb-4 Welcome to QC First Admin Management
+        
+   p.card-text
+    | View all courses.  View all users.
